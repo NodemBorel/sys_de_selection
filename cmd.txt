@@ -1,0 +1,9 @@
+php artisan make:controller AuthenticationController
+
+php artisan make:model Admin -m
+
+ php artisan migrate
+
+php artisan make:middleware AuthChek
+
+php artisan make:middleware AlreadyLoggedIn
