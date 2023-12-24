@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login', [AuthenticationController::class, 'login'])->middleware('alreadyLoggedIn');
+Route::post('login-user', [AuthenticationController::class, 'loginUser']);
+Route::get('/dashboard', [AuthenticationController::class, 'dashboard'])->middleware('isLoggedIn');
+Route::get('/logout', [AuthenticationController::class, 'logout']);
