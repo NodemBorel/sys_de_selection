@@ -7,11 +7,12 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             @if(session('message'))
-                <div class="alert alert-success">
-                    {{session('message')}}
+                <div class="alert alert-success alert-dismissible fade show shadow" role="alert">
+                    <strong>{{ session('message') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
-            @endif
-            <div class="card shadow-lg">
+            @endif 
+            <div class="card mt-4 shadow-lg">
                 <div class="card-header">
                     <h4 style="text-align: center">Login</h4>
                 </div>
