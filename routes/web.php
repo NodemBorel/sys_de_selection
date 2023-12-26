@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Niveau1Controller;
 use App\Http\Controllers\AuthenticationController;
 
 /*
@@ -17,6 +18,12 @@ use App\Http\Controllers\AuthenticationController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/course', function () {
+    return view('course');
+});
+
+Route::get('/niveau-1', [Niveau1Controller::class, 'niveau1']);
 
 Route::get('/login', [AuthenticationController::class, 'login'])->middleware('alreadyLoggedIn');
 Route::post('login-user', [AuthenticationController::class, 'loginUser']);

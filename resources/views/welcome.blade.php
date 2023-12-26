@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.extends.app')
 
 @section('content')
 
@@ -10,9 +10,9 @@
                 <ul>
                     <li><a href="#">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
-                    <li><a href="#">COURSE</a></li>
+                    <li><a href="{{ url('/course') }}">COURSE</a></li>
                     <li><a href="#">PUBLICATION</a></li>
-                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="{{ url('/login') }}">LOGIN</a></li>
                     <li><a href="#">CONTACT</a></li>
                 </ul>
             </div>
