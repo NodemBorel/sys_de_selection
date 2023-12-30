@@ -8,6 +8,7 @@ use App\Http\Controllers\Form_Enregistrement\Licence2Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence3Controller;
 use App\Http\Controllers\Form_Enregistrement\Master1Controller;
 use App\Http\Controllers\Form_Enregistrement\Master2Controller;
+use App\Http\Controllers\PublicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,13 @@ Route::post('/submit-licence3', [Licence3Controller::class, 'save']);
 Route::post('/submit-master1', [Master1Controller::class, 'save']);
 Route::post('/submit-master2', [Master2Controller::class, 'save']);
 Route::post('/submit-doctorat', [DoctoratController::class, 'save']);
+
+Route::get('/publication', [PublicationController::class, 'display']);
+Route::get('/pub-licence2', [PublicationController::class, 'display_l2']);
+Route::get('/pub-licence3', [PublicationController::class, 'display_l3']);
+Route::get('/pub-master1', [PublicationController::class, 'display_ms1']);
+Route::get('/pub-master2', [PublicationController::class, 'display_ms2']);
+Route::get('/pub-doctorat', [PublicationController::class, 'display_doc']);
 
 Route::get('/login', [AuthenticationController::class, 'login'])->middleware('alreadyLoggedIn');
 Route::post('login-user', [AuthenticationController::class, 'loginUser']);

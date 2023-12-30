@@ -12,6 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- datatable ----->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
     <title>App</title>
     <style>
         *{
@@ -39,13 +44,31 @@
         .blog-footer p:last-child {
             margin-bottom: 0;
         }
+    
+        .dataTables_wrapper .dataTables_paginate .paginate_button{
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+        div.dataTables_wrapper div.dataTables_length select{
+            width: 50% !important;
+        }
     </style>
 </head>
 <body>
     @yield("content")
 
-    
+    <script src="{{ asset('styles/js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('styles/js/bootstrap.bundle.min.js') }}"></script>
+    
+    <!-- datatable ----->
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#myDataTable').DataTable();
+        });
+    </script>
     
 </body>
 </html>
