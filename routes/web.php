@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\Form_Enregistrement\Master1Controller;
@@ -10,8 +10,8 @@ use App\Http\Controllers\Form_Enregistrement\DoctoratController;
 use App\Http\Controllers\Form_Enregistrement\Licence1Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence2Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence3Controller;
-use App\Http\Controllers\admin\Licence1Controller as AdminLicence1Controller;
-use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Admin\ImportExport\Licence1ImportExport;
+use App\Http\Controllers\Admin\Licence1Controller as AdminLicence1Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +59,6 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/block-links', [AdminLicence1Controller::class, 'blockUnblockLinks']);
+
+Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
+Route::get('/licence1_export', [Licence1ImportExport::class, 'export']);

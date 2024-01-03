@@ -5,12 +5,29 @@
 <br>
 
 <div class="row" id="alert-container">
+
+    @if (session('message'))
+        <div class="alert alert-success alert-dismissible fade show shadow" role="alert">
+            <strong>{{ session('message') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="col-md">
         <div class="card card-body">
             <h5>Customer:</h5>
             <hr>
-            <a class="btn btn-outline-info btn-sm btn-block" id="block-btn">Update Customer</a>
-            <a class="btn btn-outline-danger btn-sm btn-block" id="unblock-btn">Delete Customer</a>
+            <a class="btn btn-outline-info btn-sm btn-block" id="block-btn">block</a>
+            <a class="btn btn-outline-danger btn-sm btn-block" id="unblock-btn">de-block</a>
+
+            <form action="{{ url('/licence1_import') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" id="">
+                <input type="submit" class="btn btn-outline-danger btn-sm btn-block" value="Import excel">
+            </form>
+
+            <a class="btn btn-outline-danger btn-sm btn-block" href="{{ url('/licence1_export') }}" id="unblock-btn">Export</a>
+
         </div>
     </div>
 

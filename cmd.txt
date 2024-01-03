@@ -8,6 +8,26 @@ php artisan make:middleware AuthChek
 
 php artisan make:middleware AlreadyLoggedIn
 
+
+
 excel imp/exp
 
 composer require maatwebsite/excel
+
+go to config/app
+provider:
+Maatwebsite\Excel\ExcelServiceProvider::class,
+alias
+'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
+php artisan vendor:publish 
+
+in case of error:
+Go to composer.json
+Update "maatwebsite/excel": "3.1.48",
+Run composer update.
+it will work if still not works ;
+then go to php.ini (c:\xampp\php\php.ini) and search ;gd make it to gd
+
+php artisan make:import Licence1Import --model=Licence1
+php artisan make:export Licence1Export --model=Licence1
