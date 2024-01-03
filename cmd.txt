@@ -7,3 +7,7 @@ php artisan make:model Admin -m
 php artisan make:middleware AuthChek
 
 php artisan make:middleware AlreadyLoggedIn
+
+excel imp/exp
+
+composer require maatwebsite/excel

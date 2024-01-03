@@ -1,14 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\Form_Enregistrement\Master1Controller;
+use App\Http\Controllers\Form_Enregistrement\Master2Controller;
 use App\Http\Controllers\Form_Enregistrement\DoctoratController;
 use App\Http\Controllers\Form_Enregistrement\Licence1Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence2Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence3Controller;
-use App\Http\Controllers\Form_Enregistrement\Master1Controller;
-use App\Http\Controllers\Form_Enregistrement\Master2Controller;
-use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\admin\Licence1Controller as AdminLicence1Controller;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/course', function () {
-    return view('course');
-});
+Route::get('/course', [CourseController::class, 'course']);
 
 Route::get('/licence-1', [Licence1Controller::class, 'licence1']);
 Route::get('/licence-2', [Licence2Controller::class, 'licence2']);
@@ -55,3 +56,6 @@ Route::get('/login', [AuthenticationController::class, 'login'])->middleware('al
 Route::post('login-user', [AuthenticationController::class, 'loginUser']);
 Route::get('/dashboard', [AuthenticationController::class, 'dashboard'])->middleware('isLoggedIn');
 Route::get('/logout', [AuthenticationController::class, 'logout']);
+
+Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
+Route::post('/block-links', [AdminLicence1Controller::class, 'blockUnblockLinks']);
