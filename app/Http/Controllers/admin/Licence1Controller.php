@@ -2,14 +2,95 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Licence1;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Licence1Select;
 use Illuminate\Support\Facades\File;
 
 class Licence1Controller extends Controller
 {
-    public function licence1(){
-        return view('admin.licence1');
+    private $candidats;
+    public function licence1(Request $request){
+
+        $candidats = DB::table('licence1s')->get();
+
+        $nationalite = $request->input('nationalite');
+        $moyenneBaccalaureat = (float)$request->input('moyenne');
+        $typebaccalaureat = $request->input('typebaccalaureat');
+        $age = $request->input('age');
+        $sexe = $request->input('sexe');
+        $region = $request->input('region');
+        $filiere = $request->input('filiere');
+
+        $query = DB::table('licence1s');
+
+        if ($moyenneBaccalaureat) {
+            $query->where('moyenne', '>=', $moyenneBaccalaureat);
+        }
+
+        if ($filiere) {
+            $query->where('filiere', $filiere);
+        }
+
+        if ($sexe) {
+            $query->where('sexe', $sexe);
+        }
+
+        if ($nationalite) {
+            $query->where('nationalite', $nationalite);
+        }
+
+        if ($region) {
+            $query->where('region', $region);
+        }
+
+        if ($typebaccalaureat) {
+            $query->where('typebaccalaureat', $typebaccalaureat);
+        }
+
+        if ($age) {
+            $query->where('age', $age);
+        }
+
+        if ($request->has('selectionner')) {
+            $this->candidats = $query->get();
+
+            /*$candidats_non = DB::table('candidats')
+                ->where('moyenne', '<', $moyenneBaccalaureat)
+                ->where('sexe','!=', $sexe)
+                ->orWhere('filiere', '!=', $filiere)
+                ->get();
+
+            foreach ($candidats_non as $candidat) {
+                if ($candidat->moyenne < $moyenneBaccalaureat && $candidat->filiere != $filiere) {
+                    $candidat->motif = 'Moyenne insuffisante et Filiere non sélectionnée';
+                } else if ($candidat->moyenne < $moyenneBaccalaureat) {
+                    $candidat->motif = 'Moyenne insuffisante';
+                } else if ($candidat->filiere != $filiere) {
+                    $candidat->motif = 'Filiere non sélectionnée';
+                }
+            }*/
+        } else {
+            $this->candidats = collect([]); // Tableau vide si le bouton "Sélectionner" n'est pas cliqué
+            //$candidats_non = collect([]); // Tableau vide également
+        }
+
+        $pre_candidats = $this->candidats;
+
+        session(['pre_candidats' => $pre_candidats]);
+        session()->save(); // Sauvegarde les données de la session
+
+        $select = DB::table('licence1_selects')->get();
+        
+        $data=[
+            'pre_candidats' => $pre_candidats,
+            'candidats' => $candidats,
+            'select' => $select,
+        ];
+
+        return view('admin.licence1',$data);
     }
 
     public function blockUnblockLinks(Request $request)
@@ -27,5 +108,41 @@ class Licence1Controller extends Controller
             'message1' => 'Arrete avec success',
             'message2' => 'Effectue avec success',
         ]);
+    }
+
+    public function validselect(){
+        $candidats = session('pre_candidats');
+        if ($candidats) {
+            $successCount = 0;
+            foreach ($candidats as $candidat) {
+                $existingCandidat = Licence1Select::where('email', $candidat->email)
+                    ->where('nom', $candidat->nom)
+                    ->first();
+                if (!$existingCandidat) {
+                    $select = new Licence1Select;
+                    $select->fill((array) $candidat);
+                    $select->save();
+                    $successCount++;
+                }
+            }
+
+            if ($successCount > 0) {
+                // Au moins un enregistrement réussi
+                return redirect()->back()->with('message', $successCount . ' enregistrement(s) ont été ajoutés avec succès.');
+            } else {
+                // Aucun enregistrement ajouté (tous existent déjà)
+                return redirect()->back()->with('message', 'Aucun nouvel enregistrement ajouté.');
+            }
+        } else {
+            // Échec de l'enregistrement
+            return redirect()->back()->with('message', 'Une erreur s\'est produite lors de l\'enregistrement des données.');
+        }
+    }
+
+    public function delete_select(){
+
+        DB::table('licence1_selects')->truncate();
+
+        return redirect()->back();
     }
 }

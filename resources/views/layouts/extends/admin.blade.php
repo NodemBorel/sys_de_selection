@@ -59,6 +59,15 @@
         #orders-pending{
             background-color: #7CD1C0;
         }
+        .form-inline .form-group {
+        display: inline-block;
+        margin-right: 10px;
+        }
+
+        .form-inline label {
+            display: inline-block;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>

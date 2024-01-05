@@ -62,3 +62,7 @@ Route::post('/block-links', [AdminLicence1Controller::class, 'blockUnblockLinks'
 
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
 Route::get('/licence1_export', [Licence1ImportExport::class, 'export']);
+
+Route::get('/selectlicence1', [AdminLicence1Controller::class, 'licence1']);
+Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
+Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
