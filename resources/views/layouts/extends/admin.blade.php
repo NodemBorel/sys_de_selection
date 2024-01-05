@@ -85,7 +85,17 @@
 
     <script>
         $(document).ready(function(){
-            $('#myDataTable').DataTable();
+            $('#myDataTable').DataTable({
+                "pageLength": 5
+            });
+        });
+        $(document).ready(function(){
+            $('#myDataTable1').DataTable({
+                "pageLength": 5 // Display 5 records per page
+            });
+        });
+        $(document).ready(function(){
+            $('#myDataTable2').DataTable();
         });
     </script>
     

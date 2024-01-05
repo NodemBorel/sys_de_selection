@@ -25,7 +25,7 @@
                         <input type="submit" class="btn btn-outline-danger btn-sm btn-block" value="Import excel">
                     </form>
 
-                    
+
 
                 </div>
             </div>
@@ -192,42 +192,44 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <table id="myDataTable" class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Sexe</th>
-                                    <th>Nationalité</th>
-                                    <th>email</th>
-                                    <th>Type Baccalaureat</th>
-                                    <th>Moyenne</th>
-                                    <th>Age</th>
-                                    <th>Region</th>
-                                    <th>Nom de l'Etablissement</th>
-                                    <th>Filiere</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($candidats as $candidat)
+                        <div class="table-responsive">
+                            <table id="myDataTable" class="table table-sm table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ $candidat->id }}</td>
-                                        <td>{{ $candidat->nom }}</td>
-                                        <td>{{ $candidat->prenom }}</td>
-                                        <td>{{ $candidat->sexe }}</td>
-                                        <td>{{ $candidat->nationalite }}</td>
-                                        <td>{{ $candidat->email }}</td>
-                                        <td>{{ $candidat->typebaccalaureat }}</td>
-                                        <td>{{ $candidat->moyenne }}</td>
-                                        <td>{{ $candidat->age }}</td>
-                                        <td>{{ $candidat->region }}</td>
-                                        <td>{{ $candidat->nomEtb }}</td>
-                                        <td>{{ $candidat->filiere }}</td>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Sexe</th>
+                                        <th>Nationalité</th>
+                                        <th>email</th>
+                                        <th>Type Baccalaureat</th>
+                                        <th>Moyenne</th>
+                                        <th>Age</th>
+                                        <th>Region</th>
+                                        <th>Nom de l'Etablissement</th>
+                                        <th>Filiere</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($candidats as $candidat)
+                                        <tr>
+                                            <td>{{ $candidat->id }}</td>
+                                            <td>{{ $candidat->nom }}</td>
+                                            <td>{{ $candidat->prenom }}</td>
+                                            <td>{{ $candidat->sexe }}</td>
+                                            <td>{{ $candidat->nationalite }}</td>
+                                            <td>{{ $candidat->email }}</td>
+                                            <td>{{ $candidat->typebaccalaureat }}</td>
+                                            <td>{{ $candidat->moyenne }}</td>
+                                            <td>{{ $candidat->age }}</td>
+                                            <td>{{ $candidat->region }}</td>
+                                            <td>{{ $candidat->nomEtb }}</td>
+                                            <td>{{ $candidat->filiere }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,42 +243,44 @@
                             PARTIR DE CES CRITERES DU <b>NIVEAU 1</b></h4>
                     </div>
                     <div class="card-body">
-                        <table id="myDataTable" class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Sexe</th>
-                                    <th>Nationalité</th>
-                                    <th>email</th>
-                                    <th>Type Baccalaureat</th>
-                                    <th>Moyenne</th>
-                                    <th>Age</th>
-                                    <th>Region</th>
-                                    <th>Nom de l'Etablissement</th>
-                                    <th>Filiere</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($pre_candidats as $pre_candidat)
+                        <div class="table-responsive">
+                            <table id="myDataTable1" class="table table-sm table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ $pre_candidat->id }}</td>
-                                        <td>{{ $pre_candidat->nom }}</td>
-                                        <td>{{ $pre_candidat->prenom }}</td>
-                                        <td>{{ $pre_candidat->sexe }}</td>
-                                        <td>{{ $pre_candidat->nationalite }}</td>
-                                        <td>{{ $pre_candidat->email }}</td>
-                                        <td>{{ $pre_candidat->typebaccalaureat }}</td>
-                                        <td>{{ $pre_candidat->moyenne }}</td>
-                                        <td>{{ $pre_candidat->age }}</td>
-                                        <td>{{ $pre_candidat->region }}</td>
-                                        <td>{{ $pre_candidat->nomEtb }}</td>
-                                        <td>{{ $pre_candidat->filiere }}</td>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Sexe</th>
+                                        <th>Nationalité</th>
+                                        <th>email</th>
+                                        <th>Type Baccalaureat</th>
+                                        <th>Moyenne</th>
+                                        <th>Age</th>
+                                        <th>Region</th>
+                                        <th>Nom de l'Etablissement</th>
+                                        <th>Filiere</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($pre_candidats as $pre_candidat)
+                                        <tr>
+                                            <td>{{ $pre_candidat->id }}</td>
+                                            <td>{{ $pre_candidat->nom }}</td>
+                                            <td>{{ $pre_candidat->prenom }}</td>
+                                            <td>{{ $pre_candidat->sexe }}</td>
+                                            <td>{{ $pre_candidat->nationalite }}</td>
+                                            <td>{{ $pre_candidat->email }}</td>
+                                            <td>{{ $pre_candidat->typebaccalaureat }}</td>
+                                            <td>{{ $pre_candidat->moyenne }}</td>
+                                            <td>{{ $pre_candidat->age }}</td>
+                                            <td>{{ $pre_candidat->region }}</td>
+                                            <td>{{ $pre_candidat->nomEtb }}</td>
+                                            <td>{{ $pre_candidat->filiere }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -296,53 +300,54 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE VALIDE DES CANDIDATS SELCTIONNES
-                            <b>NIVEAU 1</b></h4>
+                            <b>NIVEAU 1</b>
+                        </h4>
                     </div>
                     <div class="card-body">
-                        <table id="myDataTable" class="table table-sm table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Sexe</th>
-                                    <th>Nationalité</th>
-                                    <th>email</th>
-                                    <th>Type Baccalaureat</th>
-                                    <th>Moyenne</th>
-                                    <th>Age</th>
-                                    <th>Region</th>
-                                    <th>Nom de l'Etablissement</th>
-                                    <th>Filiere</th>
-                                    <th>Date Naissance</th>
-                                    <th>Lieu Naissance</th>
-                                    <th>Langue</th>
-                                    <th>Delivrance Diplome</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($select as $sel)
+                        <div class="table-responsive">
+                            <table id="myDataTable2" class="table table-sm table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ $sel->id }}</td>
-                                        <td>{{ $sel->nom }}</td>
-                                        <td>{{ $sel->prenom }}</td>
-                                        <td>{{ $sel->sexe }}</td>
-                                        <td>{{ $sel->nationalite }}</td>
-                                        <td>{{ $sel->email }}</td>
-                                        <td>{{ $sel->typebaccalaureat }}</td>
-                                        <td>{{ $sel->moyenne }}</td>
-                                        <td>{{ $sel->age }}</td>
-                                        <td>{{ $sel->region }}</td>
-                                        <td>{{ $sel->nomEtb }}</td>
-                                        <td>{{ $sel->filiere }}</td>
-                                        <td>{{ $sel->dateNaiss }}</td>
-                                        <td>{{ $sel->lieuNaiss }}</td>
-                                        <td>{{ $sel->langue }}</td>
-                                        <td>{{ $sel->delivBac }}</td>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Sexe</th>
+                                        <th>Nationalité</th>
+                                        <th>email</th>
+                                        <th>Type Baccalaureat</th>
+                                        <th>Moyenne</th>
+                                        <th>Age</th>
+                                        <th>Region</th>
+                                        <th>Filiere</th>
+                                        <th>Date Naissance</th>
+                                        <th>Lieu Naissance</th>
+                                        <th>Langue</th>
+                                        <th>Delivrance Diplome</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($select as $sel)
+                                        <tr>
+                                            <td>{{ $sel->id }}</td>
+                                            <td>{{ $sel->nom }}</td>
+                                            <td>{{ $sel->prenom }}</td>
+                                            <td>{{ $sel->sexe }}</td>
+                                            <td>{{ $sel->nationalite }}</td>
+                                            <td>{{ $sel->email }}</td>
+                                            <td>{{ $sel->typebaccalaureat }}</td>
+                                            <td>{{ $sel->moyenne }}</td>
+                                            <td>{{ $sel->age }}</td>
+                                            <td>{{ $sel->region }}</td>
+                                            <td>{{ $sel->filiere }}</td>
+                                            <td>{{ $sel->dateNaiss }}</td>
+                                            <td>{{ $sel->lieuNaiss }}</td>
+                                            <td>{{ $sel->langue }}</td>
+                                            <td>{{ $sel->delivBac }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -364,13 +369,14 @@
                         </div>
 
                         <div class="col-md">
-                            <button name="selectionner" type="submit" class="btn btn-primary">Envoyer un Email aux Candidats Sélectionnés</button>
+                            <button name="selectionner" type="submit" class="btn btn-primary">Envoyer un Email aux
+                                Candidats Sélectionnés</button>
                         </div>
 
                         <form class="col-md" action="{{ url('delete-select1') }}" method="POST">
                             @csrf
                             <div class="col-md">
-                              <button class="btn btn-primary" type="submit">VIDER LA LISTE</button>
+                                <button class="btn btn-primary" type="submit">VIDER LA LISTE</button>
                             </div>
                         </form>
 
