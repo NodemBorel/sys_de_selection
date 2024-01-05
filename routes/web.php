@@ -58,11 +58,13 @@ Route::get('/dashboard', [AuthenticationController::class, 'dashboard'])->middle
 Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
-Route::post('/block-links', [AdminLicence1Controller::class, 'blockUnblockLinks']);
+Route::post('/block-links_l1', [AdminLicence1Controller::class, 'blockUnblockLinks']);
 
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
-Route::get('/licence1_export', [Licence1ImportExport::class, 'export']);
+Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);
 
 Route::get('/selectlicence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
 Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
+
+Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);

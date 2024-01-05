@@ -31,3 +31,10 @@ then go to php.ini (c:\xampp\php\php.ini) and search ;gd make it to gd
 
 php artisan make:import Licence1Import --model=Licence1
 php artisan make:export Licence1Export --model=Licence1
+
+
+pdf generation:
+
+composer require barryvdh/laravel-dompdf
+add provider and alias
+'PDF' => Barryvdh\DomPDF\Facade::class, instead

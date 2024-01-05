@@ -356,11 +356,11 @@
                     <div class="row">
 
                         <div class="col-md">
-                            <button name="selectionner" type="submit" class="btn btn-primary">Export pdf</button>
+                            <a class="btn btn-success" href="{{ url('/licence1_exportpdf') }}">Export pdf</a>
                         </div>
 
                         <div class="col-md">
-                            <a class="btn btn-warning" href="{{ url('/licence1_export') }}">Export Excel</a>
+                            <a class="btn btn-warning" href="{{ url('/licence1_export-excel') }}">Export Excel</a>
                         </div>
 
                         <div class="col-md">

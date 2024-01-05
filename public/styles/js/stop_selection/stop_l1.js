@@ -4,7 +4,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/block-links', 
+            url: '/block-links_l1', 
             type: 'POST',
             data: {
                 'link_id': 0, 
@@ -30,7 +30,7 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/block-links', 
+            url: '/block-links_l1', 
             type: 'POST',
             data: {
                 'link_id': 0, 

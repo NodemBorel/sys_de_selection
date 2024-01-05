@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctorat;
 use App\Models\Licence1;
+use App\Models\Licence1Select;
 use App\Models\Licence2;
 use App\Models\Licence3;
 use App\Models\Master1;
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
 class PublicationController extends Controller
 {
     public function display(){
-        $etudiants = Licence1::all();
+        $etudiants = Licence1Select::all();
         $niveau = "Licence 1";
         return view('publucation', compact('etudiants','niveau'));
     }

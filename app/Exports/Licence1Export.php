@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Licence1;
+use App\Models\Licence1Select;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class Licence1Export implements FromCollection
@@ -12,7 +12,7 @@ class Licence1Export implements FromCollection
     */
     public function collection()
     {
-        return Licence1::select(
+        return Licence1Select::select(
             'nom',
             'prenom',
             'sexe',
