@@ -49,9 +49,6 @@
             width: 50% !important;
         }
 
-        /*#logo{
-        }*/
-
         /*body{
             background-color: #ebeff5;
         }*/
