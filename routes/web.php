@@ -12,6 +12,7 @@ use App\Http\Controllers\Form_Enregistrement\Licence2Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence3Controller;
 use App\Http\Controllers\Admin\ImportExport\Licence1ImportExport;
 use App\Http\Controllers\Admin\Licence1Controller as AdminLicence1Controller;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,4 @@ Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
 Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
 
 Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);
+Route::get('/email-select1', [EmailController::class, 'emailNiveau1']);

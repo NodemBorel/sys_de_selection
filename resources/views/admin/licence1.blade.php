@@ -369,8 +369,7 @@
                         </div>
 
                         <div class="col-md">
-                            <button name="selectionner" type="submit" class="btn btn-primary">Envoyer un Email aux
-                                Candidats Sélectionnés</button>
+                            <a href="email-select1" class="btn btn-primary">Envoyer un Email aux Candidats Sélectionnés</a>
                         </div>
 
                         <form class="col-md" action="{{ url('delete-select1') }}" method="POST">
