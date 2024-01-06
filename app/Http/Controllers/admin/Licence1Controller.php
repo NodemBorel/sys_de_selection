@@ -83,11 +83,34 @@ class Licence1Controller extends Controller
         session()->save(); // Sauvegarde les données de la session
 
         $select = DB::table('licence1_selects')->get();
+
+        //  Pourcentages de sexe
+        //The max(1, ...) function ensures that the $totalUsers variable is always at least 1 to avoid division by zero errors.
+        $totalUsers = max(1, Licence1Select::count());
+        $maleCount = Licence1Select::where('sexe', 'Masculin')->count();
+        $femaleCount = Licence1Select::where('sexe', 'Feminin')->count();
+
+        // Calcul des pourcentages
+        $malePercentage = ($maleCount / $totalUsers) * 100;
+        $femalePercentage = ($femaleCount / $totalUsers) * 100;
+
+        //These lines extract the ages of the users using the pluck() method on the Licence1Select model, extracting the 'age' column values. The ages are then converted to an array using toArray().
+        $ages = Licence1Select::pluck('age')->toArray();
+
+        $averageAge = count($ages) > 0 ? array_sum($ages) / count($ages) : 0;
+        //$minAge uses the min() function to find the minimum age from the ages array. If there are no ages, 0 is assigned.
+        $minAge = count($ages) > 0 ? min($ages) : 0;
+        $maxAge = count($ages) > 0 ? max($ages) : 0;
         
         $data=[
             'pre_candidats' => $pre_candidats,
             'candidats' => $candidats,
             'select' => $select,
+            'malePercentage' => $malePercentage,
+            'femalePercentage' => $femalePercentage,
+            'averageAge' => $averageAge,
+            'minAge' => $minAge,
+            'maxAge' => $maxAge,
         ];
 
         return view('admin.licence1',$data);

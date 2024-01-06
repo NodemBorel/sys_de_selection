@@ -14,36 +14,80 @@
 
             <div class="col-md">
                 <div class="card card-body">
-                    <h5>Customer:</h5>
+                    <h5>Stoper la selection:</h5>
                     <hr>
-                    <a class="btn btn-outline-info btn-sm btn-block" id="block-btn">block</a>
-                    <a class="btn btn-outline-danger btn-sm btn-block" id="unblock-btn">de-block</a>
+                    <a class="btn btn-info btn-sm btn-block" id="block-btn">block</a>
+                    <br>
+                    <a class="btn btn-danger btn-sm btn-block" id="unblock-btn">de-block</a>
+                </div>
+            </div>
 
+            <div class="col-md">
+                <div class="card card-body">
+                    <h5>Importer:</h5>
+                    <hr>
                     <form action="{{ url('/licence1_import') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input type="file" name="file" id="">
-                        <input type="submit" class="btn btn-outline-danger btn-sm btn-block" value="Import excel">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Default file Import</label>
+                            <input class="form-control" type="file" name="file" id="">
+                        </div>
+                        <input type="submit" class="btn btn-outline-danger btn-block" value="Import excel">
                     </form>
-
-
-
                 </div>
             </div>
 
-            <div class="col-md">
-                <div class="card card-body">
-                    <h5>Contact Information:</h5>
-                    <hr>
-                    <p>Email: {customer.email}</p>
-                    <p>Phone: {customer.phone}</p>
-                </div>
-            </div>
+        </div>
 
+        <br>
+
+        <div class="row">
             <div class="col-md">
-                <div class="card card-body">
-                    <h5>Total Orders:</h5>
-                    <hr>
-                    <h1 style="text-align: center; padding:10px;">{order_count}</h1>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 1</b>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="myDataTable" class="table table-sm table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nom</th>
+                                        <th>Prenom</th>
+                                        <th>Sexe</th>
+                                        <th>Nationalité</th>
+                                        <th>email</th>
+                                        <th>Type Baccalaureat</th>
+                                        <th>Moyenne</th>
+                                        <th>Age</th>
+                                        <th>Region</th>
+                                        <th>Nom de l'Etablissement</th>
+                                        <th>Filiere</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($candidats as $candidat)
+                                        <tr>
+                                            <td>{{ $candidat->id }}</td>
+                                            <td>{{ $candidat->nom }}</td>
+                                            <td>{{ $candidat->prenom }}</td>
+                                            <td>{{ $candidat->sexe }}</td>
+                                            <td>{{ $candidat->nationalite }}</td>
+                                            <td>{{ $candidat->email }}</td>
+                                            <td>{{ $candidat->typebaccalaureat }}</td>
+                                            <td>{{ $candidat->moyenne }}</td>
+                                            <td>{{ $candidat->age }}</td>
+                                            <td>{{ $candidat->region }}</td>
+                                            <td>{{ $candidat->nomEtb }}</td>
+                                            <td>{{ $candidat->filiere }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -182,59 +226,6 @@
             </div>
         </div>
 
-        <br>
-
-        <div class="row">
-            <div class="col-md">
-                <div class="card mt-4">
-                    <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 1</b>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="myDataTable" class="table table-sm table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Sexe</th>
-                                        <th>Nationalité</th>
-                                        <th>email</th>
-                                        <th>Type Baccalaureat</th>
-                                        <th>Moyenne</th>
-                                        <th>Age</th>
-                                        <th>Region</th>
-                                        <th>Nom de l'Etablissement</th>
-                                        <th>Filiere</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($candidats as $candidat)
-                                        <tr>
-                                            <td>{{ $candidat->id }}</td>
-                                            <td>{{ $candidat->nom }}</td>
-                                            <td>{{ $candidat->prenom }}</td>
-                                            <td>{{ $candidat->sexe }}</td>
-                                            <td>{{ $candidat->nationalite }}</td>
-                                            <td>{{ $candidat->email }}</td>
-                                            <td>{{ $candidat->typebaccalaureat }}</td>
-                                            <td>{{ $candidat->moyenne }}</td>
-                                            <td>{{ $candidat->age }}</td>
-                                            <td>{{ $candidat->region }}</td>
-                                            <td>{{ $candidat->nomEtb }}</td>
-                                            <td>{{ $candidat->filiere }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-md">
                 <div class="card mt-4">
@@ -369,7 +360,8 @@
                         </div>
 
                         <div class="col-md">
-                            <a href="email-select1" class="btn btn-primary">Envoyer un Email aux Candidats Sélectionnés</a>
+                            <a href="email-select1" class="btn btn-primary">Envoyer un Email aux Candidats
+                                Sélectionnés</a>
                         </div>
 
                         <form class="col-md" action="{{ url('delete-select1') }}" method="POST">
@@ -384,6 +376,96 @@
             </div>
         </div>
 
+        <br>
+
+        <div class="row">
+            
+            <div class="col-sm">
+                <div class="card card-body">
+                    <h5>Statistiques age:</h5>
+                    <hr>
+                    <canvas id="ageChart" style="width: 100%; height: 300px;"></canvas>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="card card-body">
+                    <h5>Statistiques sexe:</h5>
+                    <hr>
+                    <canvas id="chartSexe" style="width: 100%; height: 300px;"></canvas>
+                </div>
+            </div>
+
+        </div>
+        <br>
     </div>
     <script src="{{ asset('styles/js/stop_selection/stop_l1.js') }}"></script>
+    <script>
+        // Récupérez les pourcentages depuis le contrôleur
+        var malePercentage = {{ $malePercentage }};
+        var femalePercentage = {{ $femalePercentage }};
+
+        // Créez le graphique circulaire avec Chart.js
+        var ctx = document.getElementById('chartSexe').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Masculin', 'Féminin'],
+                datasets: [{
+                    data: [malePercentage, femalePercentage],
+                    backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                }]
+            },
+            options: {
+                responsive: false, // Désactivez la réactivité pour fixer les dimensions du graphique
+                plugins: {
+                    labels: {
+                        render: 'percentage', // Afficher le pourcentage
+                        fontColor: ['#000', '#000'], // Couleur du texte pour chaque section (facultatif)
+                        fontSize: 12, // Taille du texte pour chaque section (facultatif)
+                        precision: 1 // Précision du pourcentage (1 décimale)
+                    }
+                }
+            }
+        });
+
+
+        // Récupérer les statistiques d'âge à partir du contrôleur (vous pouvez les passer depuis le contrôleur ou les récupérer en utilisant une requête Ajax)
+
+        // Supposons que vous ayez déjà les valeurs des statistiques d'âge calculées dans le contrôleur
+        var averageAge = {{ $averageAge }};
+        var minAge = {{ $minAge }};
+        var maxAge = {{ $maxAge }};
+
+        // Utilisez les valeurs pour afficher les statistiques avec Chart.js
+        var ctx = document.getElementById('ageChart').getContext('2d');
+        var ageChart = new Chart(ctx, {
+            type: 'bar', // Utilisez le type de graphique souhaité (bar, line, pie, etc.)
+            data: {
+                labels: ['Moyenne', 'Minimum', 'Maximum'],
+                datasets: [{
+                    label: 'Âge',
+                    data: [averageAge, minAge, maxAge],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection
