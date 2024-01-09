@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-    <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/css/main.css') }}">
-    
-    <!-- <script src="{{ asset('styles/js/jquery.min.js') }}"></script> -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Vendor CSS Files -->
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.ico') }}" rel="icon" />
+    <link href="{{ asset('styles/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/css/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/css/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/css/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('styles/css/main.css') }}" rel="stylesheet">
+
     <title>App</title>
     <style>
         .blocked {
@@ -25,11 +27,23 @@
         }
     </style>
 </head>
-<body>
-    @yield("content")
 
-    
+<body>
+    @yield('content')
+
+
+    <!-- Vendor JS Files -->
     <script src="{{ asset('styles/js/bootstrap.bundle.min.js') }}"></script>
-    
+    <script src="{{ asset('styles/js/aos.js') }}"></script>
+    <script src="{{ asset('styles/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('styles/js/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('styles/js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('styles/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('styles/js/validate.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('styles/js/main.js') }}"></script>
+
 </body>
+
 </html>
