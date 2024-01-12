@@ -1,7 +1,8 @@
-@extends('layouts.extends.new')
+@extends('layouts.extends.form')
 
 @section('content')
-    @include('layouts.includes.navbar')
+
+@include('layouts.includes.navbar')
 
     <div class="py-2"></div>
     <div class="container py-4">
@@ -24,8 +25,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Niveau 1
-                        <a href="{{ url('/course') }}" class="btn btn-danger float-end">Back</a>
+                       <b>Niveau 1</b> 
                     </div>
 
                     <div class="card-body">
@@ -114,7 +114,7 @@
                                     </select>
                                 </div>
 
-                                <button type="button" class="btn btn-primary next-step">Next</button>
+                                <button type="button" class="btn btn-primary next-step hov">Next</button>
                             </div>
 
                             <div class="step" id="step2" style="display: none;">
@@ -160,7 +160,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end">Next</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
                             </div>
 
                             <div class="step" id="step3" style="display: none;">
@@ -195,7 +195,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end">Next</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
                             </div>
 
                             <div class="step" id="step4" style="display: none;">
@@ -234,7 +234,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                <button type="submit" class="btn btn-primary float-end hov">Submit</button>
                             </div>
 
                         </form>

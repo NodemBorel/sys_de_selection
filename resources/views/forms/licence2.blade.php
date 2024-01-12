@@ -1,7 +1,9 @@
-@extends('layouts.extends.new')
+@extends('layouts.extends.form')
 
 @section('content')
-    @include('layouts.includes.navbar')
+
+@include('layouts.includes.navbar')
+
 
     <div class="py-2"></div>
     <div class="container py-4">
@@ -24,8 +26,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Niveau 2
-                        <a href="{{ url('/course') }}" class="btn btn-danger float-end">Back</a>
+                        <b>Niveau 2</b>
                     </div>
 
                     <div class="card-body">
@@ -57,8 +58,9 @@
 
                                 <div class="form-group md-3">
                                     <label for="">Age</label>
-                                    <input type="number" min="10" max="100" class="form-control" id="age" name="age" required>
-                                 </div>
+                                    <input type="number" min="10" max="100" class="form-control" id="age"
+                                        name="age" required>
+                                </div>
 
                                 <div class="form-group md-3 py-3">
                                     <label for="">Nationalité</label>
@@ -102,7 +104,8 @@
                                         <option value="Nigeria">Nigeria</option>
                                         <option value="Ouganda">Ouganda</option>
                                         <option value="République centrafricaine">République centrafricaine</option>
-                                        <option value="République démocratique du Congo">République démocratique du Congo</option>
+                                        <option value="République démocratique du Congo">République démocratique du Congo
+                                        </option>
                                         <option value="Rwanda">Rwanda</option>
                                         <option value="São Tomé-et-Príncipe">São Tomé-et-Príncipe</option>
                                         <option value="Sénégal">Sénégal</option>
@@ -120,7 +123,7 @@
                                     </select>
                                 </div>
 
-                                <button type="button" class="btn btn-primary next-step">Next</button>
+                                <button type="button" class="btn btn-primary next-step hov">Next</button>
                             </div>
 
                             <div class="step" id="step2" style="display: none;">
@@ -141,7 +144,8 @@
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Moyenne du baccalauréat</label>
-                                    <input type="number" min="0" max="20" step="0.01" id="moyenne" name="moyenne" class="form-control">
+                                    <input type="number" min="0" max="20" step="0.01" id="moyenne"
+                                        name="moyenne" class="form-control">
                                 </div>
 
                                 <div class="form-group md-3 py-1">
@@ -166,14 +170,15 @@
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end">Next</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
                             </div>
 
                             <div class="step" id="step3" style="display: none;">
                                 <div class="form-group md-3 py-3">
                                     <label for="age">MGP Niveau 1</label>
-                                    <input type="number" min="0" max="20" step="0.01" class="form-control" id="mgp1" name="mgp1" required>
-                                 </div>
+                                    <input type="number" min="0" max="20" step="0.01"
+                                        class="form-control" id="mgp1" name="mgp1" required>
+                                </div>
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Numéro</label>
@@ -182,7 +187,7 @@
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Filière</label>
-                                    <select class="form-control"  name="filiere" id="filiere">
+                                    <select class="form-control" name="filiere" id="filiere">
                                         <option value="">CHOIX FILIERE</option>
                                         <option value="ICT4D">ICT4D</option>
                                         <option value="Informatique">Informatique</option>
@@ -192,27 +197,30 @@
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Numéro acte de naissance</label>
-                                    <input type="text" class="form-control" id="numero_acte" name="numero_acte" required>
+                                    <input type="text" class="form-control" id="numero_acte" name="numero_acte"
+                                        required>
                                 </div>
-            
+
                                 <div class="form-group md-3 py-3">
                                     <label for="">Date de naissance</label>
-                                    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                                    <input type="date" class="form-control" id="date_naissance" name="date_naissance"
+                                        required>
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end">Next</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
                             </div>
 
                             <div class="step" id="step4" style="display: none;">
                                 <div class="form-group md-3 py-3">
                                     <label for="">Lieu de naissance</label>
-                                    <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
+                                    <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance"
+                                        required>
                                 </div>
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Langue</label>
-                                    <select class="form-control"  name="langue" id="langue">
+                                    <select class="form-control" name="langue" id="langue">
                                         <option value="">CHOIX LANGUE</option>
                                         <option value="Anglais">ANGLAIS</option>
                                         <option value="Français">Français</option>
@@ -226,7 +234,7 @@
 
                                 <div class="form-group md-3 py-1">
                                     <label for="">Diplôme Délivré par</label>
-                                    <select class="form-control"  name="delivBac" id="delivBac">
+                                    <select class="form-control" name="delivBac" id="delivBac">
                                         <option value="">DIPLOME DELIVRER PAR</option>
                                         <option value="OBC">OBC</option>
                                         <option value="GCE board">GCE board</option>
@@ -244,7 +252,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                <button type="submit" class="btn btn-primary float-end hov">Submit</button>
                             </div>
 
                         </form>
