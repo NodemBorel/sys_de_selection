@@ -115,86 +115,31 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="sexe">Sexe</label>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" name="sexe" value="Masculin" class="form-check-input"
-                                    id="masculin">
-                                <label class="form-check-label" for="masculin">Masculin</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" name="sexe" value="Feminin" class="form-check-input"
-                                    id="feminin">
-                                <label class="form-check-label" for="feminin">Féminin</label>
-                            </div>
+                            <label for="pourcentageFemmes">Pourcentage de femmes</label>
+                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="Pourcentage de femmes" name="pourcentageFemmes">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pourcentageHommes">Pourcentage d'hommes</label>
+                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="Pourcentage d'hommes" name="pourcentageHommes">
                         </div>
 
                         <div class="form-group">
                             <label for="age">Âge <= à</label>
-                                    <input type="number" class="form-control" id="age" placeholder="Âge"
-                                        name="age">
+                            <input type="number" class="form-control" id="age" placeholder="Âge" name="age">
                         </div>
 
                         <div class="form-group">
-                            <label for="nationalite">Nationalité</label>
-                            <select name="nationalite" id="nationalite" class="form-control">
-                                <option value="">CHOIX NATIONALITÉS</option>
-                                <option value="Algérie">Algérie</option>
-                                <option value="Angola">Angola</option>
-                                <option value="Bénin">Bénin</option>
-                                <option value="Botswana">Botswana</option>
-                                <option value="Burkina Faso">Burkina Faso</option>
-                                <option value="Burundi">Burundi</option>
-                                <option value="Cameroun">Cameroun</option>
-                                <option value="Cap-Vert">Cap-Vert</option>
-                                <option value="Comores">Comores</option>
-                                <option value="Congo">Congo</option>
-                                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-                                <option value="Djibouti">Djibouti</option>
-                                <option value="Égypte">Égypte</option>
-                                <option value="Érythrée">Érythrée</option>
-                                <option value="Eswatini">Eswatini</option>
-                                <option value="Éthiopie">Éthiopie</option>
-                                <option value="Gabon">Gabon</option>
-                                <option value="Gambie">Gambie</option>
-                                <option value="Ghana">Ghana</option>
-                                <option value="Guinée">Guinée</option>
-                                <option value="Guinée-Bissau">Guinée-Bissau</option>
-                                <option value="Guinée équatoriale">Guinée équatoriale</option>
-                                <option value="Kenya">Kenya</option>
-                                <option value="Lesotho">Lesotho</option>
-                                <option value="Liberia">Liberia</option>
-                                <option value="Libye">Libye</option>
-                                <option value="Madagascar">Madagascar</option>
-                                <option value="Malawi">Malawi</option>
-                                <option value="Mali">Mali</option>
-                                <option value="Maroc">Maroc</option>
-                                <option value="Maurice">Maurice</option>
-                                <option value="Mauritanie">Mauritanie</option>
-                                <option value="Mozambique">Mozambique</option>
-                                <option value="Namibie">Namibie</option>
-                                <option value="Niger">Niger</option>
-                                <option value="Nigeria">Nigeria</option>
-                                <option value="Ouganda">Ouganda</option>
-                                <option value="République centrafricaine">République centrafricaine</option>
-                                <option value="République démocratique du Congo">République démocratique du Congo</option>
-                                <option value="Rwanda">Rwanda</option>
-                                <option value="São Tomé-et-Príncipe">São Tomé-et-Príncipe</option>
-                                <option value="Sénégal">Sénégal</option>
-                                <option value="Seychelles">Seychelles</option>
-                                <option value="Sierra Leone">Sierra Leone</option>
-                                <option value="Somalie">Somalie</option>
-                                <option value="Soudan">Soudan</option>
-                                <option value="Soudan du Sud">Soudan du Sud</option>
-                                <option value="Tanzanie">Tanzanie</option>
-                                <option value="Tchad">Tchad</option>
-                                <option value="Togo">Togo</option>
-                                <option value="Tunisie">Tunisie</option>
-                                <option value="Zambie">Zambie</option>
-                                <option value="Zimbabwe">Zimbabwe</option>
-                            </select>
+                            <label for="pourcentageAlgerie">Pourcentage Cameroun</label>
+                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="Pourcentage Cameroun" name="pourcentageCmr">
                         </div>
 
                         <div class="form-group">
+                            <label for="pourcentageAlgerie">Pourcentage Autre pay</label>
+                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="pourcentage Autre Pay" name="pourcentageAutrePay">
+                        </div>
+
+                        <!-- <div class="form-group">
                             <label for="region">Région</label>
                             <select name="region" id="region" class="form-control">
                                 <option value="">CHOIX RÉGIONS</option>
@@ -208,9 +153,9 @@
                                 <option value="Sud-Ouest">Sud-Ouest</option>
                                 <option value="Sud-Est">Sud-Est</option>
                             </select>
-                        </div>
+                        </div> -->
 
-                        <div class="form-group">
+                        <!--- <div class="form-group">
                             <label for="typebaccalaureat">Baccalauréat</label>
                             <select name="typebaccalaureat" id="type_baccalaureat" class="form-control">
                                 <option value="">CHOIX TYPE DE BAC</option>
@@ -218,7 +163,7 @@
                                 <option value="D">D</option>
                                 <option value="A4">A4</option>
                             </select>
-                        </div>
+                        </div>  --->
 
                         <button name="selectionner" type="submit" class="btn btn-primary">SÉLECTIONNER</button>
                     </form>

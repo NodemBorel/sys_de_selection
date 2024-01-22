@@ -38,3 +38,49 @@ pdf generation:
 composer require barryvdh/laravel-dompdf
 add provider and alias
 'PDF' => Barryvdh\DomPDF\Facade::class, instead
+
+=======================================================================================
+use App\Models\YourModel;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class YourModelFactory extends Factory
+{
+    protected $model = YourModel::class;
+
+    public function definition()
+    {
+        return [
+            'nom' => $this->faker->unique()->lastName,
+            'prenom' => $this->faker->firstName,
+            'sexe' => $this->faker->randomElement(['male', 'female']),
+            'nationalite' => $this->faker->country,
+            'email' => $this->faker->email,
+            'typebaccalaureat' => $this->faker->randomElement(['Type A', 'Type B', 'Type C']),
+            'moyenne' => $this->faker->randomFloat(2, 0, 20),
+            'age' => $this->faker->numberBetween(18, 60),
+            'region' => $this->faker->unique()->city,
+            'nomEtb' => $this->faker->company,
+            'numero' => $this->faker->phoneNumber,
+            'filiere' => $this->faker->randomElement(['Filiere A', 'Filiere B', 'Filiere C']),
+            'numActe' => $this->faker->ean13,
+            'dateNaiss' => $this->faker->date,
+            'lieuNaiss' => $this->faker->city,
+            'langue' => $this->faker->languageCode,
+            'adresse' => $this->faker->address,
+            'anneebac' => $this->faker->numberBetween(2000, 2022),
+            'delivBac' => $this->faker->state,
+        ];
+    }
+}
+
+
+use Illuminate\Database\Seeder;
+use App\Models\YourModel;
+
+class YourModelSeeder extends Seeder
+{
+    public function run()
+    {
+        YourModel::factory()->count(10)->create();
+    }
+}

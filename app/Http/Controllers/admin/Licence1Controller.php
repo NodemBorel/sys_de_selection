@@ -15,13 +15,18 @@ class Licence1Controller extends Controller
     public function licence1(Request $request){
 
         $candidats = DB::table('licence1s')->get();
+        //$totalCandidat = $candidats->count();
 
         $nationalite = $request->input('nationalite');
         $moyenneBaccalaureat = (float)$request->input('moyenne');
-        $typebaccalaureat = $request->input('typebaccalaureat');
+        //$typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
-        $sexe = $request->input('sexe');
-        $region = $request->input('region');
+        $pourcentageFemmes = $request->input('pourcentageFemmes');
+        $pourcentageHommes = $request->input('pourcentageHommes');
+        $pourcentageCmr = $request->input('pourcentageCmr');
+        $pourcentageAutrePay = $request->input('pourcentageAutrePay');
+        //$sexe = $request->input('sexe');
+        //$region = $request->input('region');
         $filiere = $request->input('filiere');
 
         $query = DB::table('licence1s');
@@ -34,44 +39,92 @@ class Licence1Controller extends Controller
             $query->where('filiere', $filiere);
         }
 
-        if ($sexe) {
-            $query->where('sexe', $sexe);
+        if($filiere){
+            $query->where('age', '>=', $age);
         }
 
-        if ($nationalite) {
-            $query->where('nationalite', $nationalite);
-        }
+        $preSelect = $query->get();
+        //dd($preSelect);
 
-        if ($region) {
-            $query->where('region', $region);
-        }
+        $totalCandidat = $preSelect->count();
+        //dd($totalCandidat);
 
-        if ($typebaccalaureat) {
-            $query->where('typebaccalaureat', $typebaccalaureat);
-        }
+        // Retrieve % of boys and girls from Cameroon
+        $numberOfCameroonPeople = ceil(($pourcentageCmr / 100) * $totalCandidat);
+        $cameroonPeople = $preSelect->where('filiere', $filiere)
+            ->where('nationalite', 'Cameroun')
+            ->sortByDesc('moyenne')
+            ->take($numberOfCameroonPeople)
+            ->pluck([]);
+            //dd($cameroonPeople);
+            
+        // Retrieve % of boys and girls from other countries
+        $numberOfOtherCountriesPeople = ceil(($pourcentageAutrePay / 100) * $totalCandidat);
+        $otherCountriesPeople = $preSelect->where('filiere', $filiere)
+            ->where('nationalite', '!=', 'Cameroun')
+            ->sortByDesc('moyenne')
+            ->take($numberOfOtherCountriesPeople)
+            ->pluck([]);
+            //dd($otherCountriesPeople);
 
-        if ($age) {
-            $query->where('age', $age);
+        if ($cameroonPeople !== null && $otherCountriesPeople !== null) {
+            $CountrySelectResult = $cameroonPeople->concat($otherCountriesPeople);
+        } else {
+            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
+            // You can assign a default value or log an error message here
+            $CountrySelectResult = collect(); // Assign an empty collection as the default value
         }
+        //dd($CountrySelectResult);
+
+        $totalCandidatCountry = $CountrySelectResult->count();
+        //dd($totalCandidatCountry);
+
+        // Retrieve % of boys
+        $numberOfBoys = ceil(($pourcentageHommes / 100) * $totalCandidatCountry);
+        //dd($numberOfBoys);
+        $boys = $CountrySelectResult->where('sexe', 'Masculin')
+            ->sortByDesc('moyenne')
+            ->take($numberOfBoys)
+            ->pluck([]);
+            //dd($boys);
+
+        // Retrieve % of girls
+        $numberOfGirls = ceil(($pourcentageFemmes / 100) * $totalCandidatCountry);
+        //dd($numberOfGirls);
+        $girls = $CountrySelectResult->where('sexe', 'Féminin')
+            ->sortByDesc('moyenne')
+            ->take($numberOfGirls)
+            ->pluck([]);   
+            //dd($girls);
+            
+        if ($boys !== null && $girls !== null) {
+            $FinalSelct = $boys->concat($girls);
+        } else {
+            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
+            // You can assign a default value or log an error message here
+            $FinalSelct = collect(); // Assign an empty collection as the default value
+        };    
+        //dd($FinalSelct);
 
         if ($request->has('selectionner')) {
-            $this->candidats = $query->get();
 
-            /*$candidats_non = DB::table('candidats')
-                ->where('moyenne', '<', $moyenneBaccalaureat)
-                ->where('sexe','!=', $sexe)
-                ->orWhere('filiere', '!=', $filiere)
-                ->get();
+            $this->candidats = $FinalSelct;
 
-            foreach ($candidats_non as $candidat) {
-                if ($candidat->moyenne < $moyenneBaccalaureat && $candidat->filiere != $filiere) {
-                    $candidat->motif = 'Moyenne insuffisante et Filiere non sélectionnée';
-                } else if ($candidat->moyenne < $moyenneBaccalaureat) {
-                    $candidat->motif = 'Moyenne insuffisante';
-                } else if ($candidat->filiere != $filiere) {
-                    $candidat->motif = 'Filiere non sélectionnée';
-                }
-            }*/
+                /*$candidats_non = DB::table('candidats')
+                    ->where('moyenne', '<', $moyenneBaccalaureat)
+                    ->where('sexe','!=', $sexe)
+                    ->orWhere('filiere', '!=', $filiere)
+                    ->get();
+
+                foreach ($candidats_non as $candidat) {
+                    if ($candidat->moyenne < $moyenneBaccalaureat && $candidat->filiere != $filiere) {
+                        $candidat->motif = 'Moyenne insuffisante et Filiere non sélectionnée';
+                    } else if ($candidat->moyenne < $moyenneBaccalaureat) {
+                        $candidat->motif = 'Moyenne insuffisante';
+                    } else if ($candidat->filiere != $filiere) {
+                        $candidat->motif = 'Filiere non sélectionnée';
+                    }
+                }*/
         } else {
             $this->candidats = collect([]); // Tableau vide si le bouton "Sélectionner" n'est pas cliqué
             //$candidats_non = collect([]); // Tableau vide également
@@ -138,8 +191,7 @@ class Licence1Controller extends Controller
         if ($candidats) {
             $successCount = 0;
             foreach ($candidats as $candidat) {
-                $existingCandidat = Licence1Select::where('email', $candidat->email)
-                    ->where('nom', $candidat->nom)
+                $existingCandidat = Licence1Select::where('id', $candidat->id)
                     ->first();
                 if (!$existingCandidat) {
                     $select = new Licence1Select;
