@@ -1,1 +1,44 @@
-[{"id":1,"name":"Licence I","url":"\/licence-1","blocked":"true","img":"images\/chimie3.jpg"},{"id":2,"name":"Licence II","url":"\/licence-2","blocked":"false","img":"images\/chimie.png"},{"id":3,"name":"Licence III","url":"\/licence-3","blocked":"false","img":"images\/math1.jpg"},{"id":4,"name":"Master I","url":"\/master-1","blocked":"false","img":"images\/phy1.png"},{"id":5,"name":"Master II","url":"\/master-2","blocked":"false","img":"images\/info.jpg"},{"id":6,"name":"PHD","url":"\/doctorat","blocked":"false","img":"images\/img.webp"}]
+[
+    {
+        "id": 1,
+        "name": "Licence I",
+        "url": "\/licence-1",
+        "blocked": "true",
+        "img": "images\/chimie3.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Licence II",
+        "url": "\/licence-2",
+        "blocked": "false",
+        "img": "images\/chimie.png"
+    },
+    {
+        "id": 3,
+        "name": "Licence III",
+        "url": "\/licence-3",
+        "blocked": "false",
+        "img": "images\/math1.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Master I",
+        "url": "\/master-1",
+        "blocked": "false",
+        "img": "images\/phy1.png"
+    },
+    {
+        "id": 5,
+        "name": "Master II",
+        "url": "\/master-2",
+        "blocked": "false",
+        "img": "images\/info.jpg"
+    },
+    {
+        "id": 6,
+        "name": "PHD",
+        "url": "\/doctorat",
+        "blocked": "false",
+        "img": "images\/img.webp"
+    }
+]

@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\AuthenticationController;
@@ -11,8 +13,11 @@ use App\Http\Controllers\Form_Enregistrement\Licence1Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence2Controller;
 use App\Http\Controllers\Form_Enregistrement\Licence3Controller;
 use App\Http\Controllers\Admin\ImportExport\Licence1ImportExport;
+use App\Http\Controllers\Admin\ImportExport\Licence2ImportExport;
+use App\Http\Controllers\Admin\ImportExport\Licence3ImportExport;
 use App\Http\Controllers\Admin\Licence1Controller as AdminLicence1Controller;
-use App\Http\Controllers\EmailController;
+use App\Http\Controllers\Admin\Licence2Controller as AdminLicence2Controller;
+use App\Http\Controllers\Admin\Licence3Controller as AdminLicence3Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,13 +65,30 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/block-links_l1', [AdminLicence1Controller::class, 'blockUnblockLinks']);
-
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
 Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);
-
 Route::get('/selectlicence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
 Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
-
 Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);
 Route::get('/email-select1', [EmailController::class, 'emailNiveau1']);
+
+Route::get('/licence2', [AdminLicence2Controller::class, 'licence2']);
+Route::post('/block-links_l2', [AdminLicence2Controller::class, 'blockUnblockLinks']);
+Route::post('/licence2_import', [Licence2ImportExport::class, 'import']);
+Route::get('/licence2_export-excel', [Licence2ImportExport::class, 'export']);
+Route::get('/selectlicence2', [AdminLicence2Controller::class, 'licence2']);
+Route::post('/validselect2', [AdminLicence2Controller::class, 'validselect']);
+Route::post('/delete-select2', [AdminLicence2Controller::class, 'delete_select']);
+Route::get('/licence2_exportpdf', [Licence2ImportExport::class, 'exportpdf']);
+Route::get('/email-select2', [EmailController::class, 'emailNiveau2']);
+
+Route::get('/licence3', [AdminLicence3Controller::class, 'licence3']);
+Route::post('/block-links_l3', [AdminLicence3Controller::class, 'blockUnblockLinks']);
+Route::post('/licence3_import', [Licence3ImportExport::class, 'import']);
+Route::get('/licence3_export-excel', [Licence3ImportExport::class, 'export']);
+Route::get('/selectlicence3', [AdminLicence3Controller::class, 'licence3']);
+Route::post('/validselect3', [AdminLicence3Controller::class, 'validselect']);
+Route::post('/delete-select3', [AdminLicence3Controller::class, 'delete_select']);
+Route::get('/licence3_exportpdf', [Licence3ImportExport::class, 'exportpdf']);
+Route::get('/email-select3', [EmailController::class, 'emailNiveau3']);

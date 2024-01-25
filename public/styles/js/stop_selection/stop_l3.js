@@ -4,10 +4,10 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/block-links_l2', 
+            url: '/block-links_l3', 
             type: 'POST',
             data: {
-                'link_id': 1, 
+                'link_id': 2, 
                 'status': true // true for blocking, false for unblocking
             },
             success: function(response) {
@@ -30,10 +30,10 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/block-links_l2', 
+            url: '/block-links_l3', 
             type: 'POST',
             data: {
-                'link_id': 1, 
+                'link_id': 2, 
                 'status': false // true for blocking, false for unblocking
             },
             success: function(response) {
