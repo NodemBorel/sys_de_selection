@@ -45,7 +45,7 @@
             <div class="col-md">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 1</b>
+                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 2</b>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -176,7 +176,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS SELECTIONNES À
-                            PARTIR DE CES CRITERES DU <b>NIVEAU 1</b></h4>
+                            PARTIR DE CES CRITERES DU <b>NIVEAU 2</b></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -236,7 +236,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE VALIDE DES CANDIDATS SELCTIONNES
-                            <b>NIVEAU 1</b>
+                            <b>NIVEAU 2</b>
                         </h4>
                     </div>
                     <div class="card-body">
