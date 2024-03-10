@@ -32,6 +32,8 @@ return new class extends Migration
             $table->string("adresse");
             $table->integer("anneebac");
             $table->string("delivBac");
+            $table->string("acte_naissance");
+            $table->string("releve_bac");
             $table->timestamps();
         });
     }

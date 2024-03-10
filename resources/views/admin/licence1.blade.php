@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="age">Âge <= à</label>
+                            <label for="age">Âge >= à</label>
                             <input type="number" class="form-control" id="age" placeholder="Âge" name="age">
                         </div>
 
@@ -155,7 +155,7 @@
                             </select>
                         </div> -->
 
-                        <!--- <div class="form-group">
+                        <div class="form-group">
                             <label for="typebaccalaureat">Baccalauréat</label>
                             <select name="typebaccalaureat" id="type_baccalaureat" class="form-control">
                                 <option value="">CHOIX TYPE DE BAC</option>
@@ -163,7 +163,7 @@
                                 <option value="D">D</option>
                                 <option value="A4">A4</option>
                             </select>
-                        </div>  --->
+                        </div>
 
                         <button name="selectionner" type="submit" class="btn btn-primary">SÉLECTIONNER</button>
                     </form>

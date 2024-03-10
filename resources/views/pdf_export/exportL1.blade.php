@@ -64,7 +64,6 @@
                             <th scope="col">Date Naissance</th>
                             <th scope="col">Lieu Naissance</th>
                             <th scope="col">Langue</th>
-                            <th scope="col">Adresse</th>
                             <th scope="col">Année Baccalaureat</th>
                             <th scope="col">Delivrance Diplome</th>
                         </tr>
@@ -88,7 +87,6 @@
                             <td>{{$candidat->dateNaiss}}</td>
                             <td>{{$candidat->lieuNaiss}}</td>
                             <td>{{$candidat->langue}}</td>
-                            <td>{{$candidat->adresse}}</td>
                             <td>{{$candidat->anneebac}}</td>
                             <td>{{$candidat->delivBac}}</td>
                         </tr>

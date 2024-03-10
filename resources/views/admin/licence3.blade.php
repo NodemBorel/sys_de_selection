@@ -62,7 +62,7 @@
                                         <th>Type Baccalaureat</th>
                                         <th>Moyenne</th>
                                         <th>Age</th>
-                                        <th>Region</th>
+                                        <th>MGP L2</th>
                                         <th>Nom de l'Etablissement L2</th>
                                         <th>Filiere</th>
                                     </tr>
@@ -79,7 +79,7 @@
                                             <td>{{ $candidat->typebaccalaureat }}</td>
                                             <td>{{ $candidat->moyenne }}</td>
                                             <td>{{ $candidat->age }}</td>
-                                            <td>{{ $candidat->region }}</td>
+                                            <td>{{ $candidat->mgp2 }}</td>
                                             <td>{{ $candidat->nomEtb2 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
                                         </tr>
@@ -192,7 +192,7 @@
                                         <th>Type Baccalaureat</th>
                                         <th>Moyenne</th>
                                         <th>Age</th>
-                                        <th>Region</th>
+                                        <th>MGP L2</th>
                                         <th>Nom de l'Etablissement</th>
                                         <th>Filiere</th>
                                     </tr>
@@ -209,7 +209,7 @@
                                             <td>{{ $pre_candidat->typebaccalaureat }}</td>
                                             <td>{{ $pre_candidat->moyenne }}</td>
                                             <td>{{ $pre_candidat->age }}</td>
-                                            <td>{{ $pre_candidat->region }}</td>
+                                            <td>{{ $pre_candidat->mgp2 }}</td>
                                             <td>{{ $pre_candidat->nomEtb2 }}</td>
                                             <td>{{ $pre_candidat->filiere }}</td>
                                         </tr>
@@ -255,7 +255,7 @@
                                         <th>Age</th>
                                         <th>Region</th>
                                         <th>Filiere</th>
-                                        <th>Date Naissance</th>
+                                        <th>MGP L2</th>
                                         <th>Lieu Naissance</th>
                                         <th>Langue</th>
                                     </tr>
@@ -274,7 +274,7 @@
                                             <td>{{ $sel->age }}</td>
                                             <td>{{ $sel->region }}</td>
                                             <td>{{ $sel->filiere }}</td>
-                                            <td>{{ $sel->dateNaiss }}</td>
+                                            <td>{{ $sel->mgp2 }}</td>
                                             <td>{{ $sel->lieuNaiss }}</td>
                                             <td>{{ $sel->langue }}</td>
                                         </tr>

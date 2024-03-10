@@ -63,7 +63,7 @@
                                         <th>Moyenne</th>
                                         <th>Age</th>
                                         <th>Region</th>
-                                        <th>Nom de l'Etablissement</th>
+                                        <th>mgp L1</th>
                                         <th>Filiere</th>
                                     </tr>
                                 </thead>
@@ -80,7 +80,7 @@
                                             <td>{{ $candidat->moyenne }}</td>
                                             <td>{{ $candidat->age }}</td>
                                             <td>{{ $candidat->region }}</td>
-                                            <td>{{ $candidat->nomEtb1 }}</td>
+                                            <td>{{ $candidat->mgp1 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
                                         </tr>
                                     @endforeach
@@ -102,6 +102,11 @@
                         <div class="form-group">
                             <label for="moyenne">Moyenne Baccalauréat >= à</label>
                             <input type="number" class="form-control" id="moyenne" placeholder="Moyenne" name="moyenne">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="moyenne">MGP L1 >= à</label>
+                            <input type="number" class="form-control" id="moyenne" placeholder="MGP" name="mgp">
                         </div>
 
                         <div class="form-group">
@@ -193,7 +198,7 @@
                                         <th>Moyenne</th>
                                         <th>Age</th>
                                         <th>Region</th>
-                                        <th>Nom de l'Etablissement</th>
+                                        <th>MGP L1</th>
                                         <th>Filiere</th>
                                     </tr>
                                 </thead>
@@ -210,7 +215,7 @@
                                             <td>{{ $pre_candidat->moyenne }}</td>
                                             <td>{{ $pre_candidat->age }}</td>
                                             <td>{{ $pre_candidat->region }}</td>
-                                            <td>{{ $pre_candidat->nomEtb1 }}</td>
+                                            <td>{{ $pre_candidat->mgp1 }}</td>
                                             <td>{{ $pre_candidat->filiere }}</td>
                                         </tr>
                                     @endforeach
@@ -253,7 +258,7 @@
                                         <th>Type Baccalaureat</th>
                                         <th>Moyenne</th>
                                         <th>Age</th>
-                                        <th>Region</th>
+                                        <th>MGP L1</th>
                                         <th>Filiere</th>
                                         <th>Date Naissance</th>
                                         <th>Lieu Naissance</th>
@@ -273,7 +278,7 @@
                                             <td>{{ $sel->typebaccalaureat }}</td>
                                             <td>{{ $sel->moyenne }}</td>
                                             <td>{{ $sel->age }}</td>
-                                            <td>{{ $sel->region }}</td>
+                                            <td>{{ $sel->mgp1 }}</td>
                                             <td>{{ $sel->filiere }}</td>
                                             <td>{{ $sel->dateNaiss }}</td>
                                             <td>{{ $sel->lieuNaiss }}</td>

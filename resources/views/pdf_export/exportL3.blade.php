@@ -56,17 +56,13 @@
                             <th scope="col">Moyenne</th>
                             <th scope="col">Age</th>
                             <th scope="col">Region</th>
-                            <th scope="col">Etablissement L1</th>
-                            <th scope="col">MGP L1</th>
                             <th scope="col">Etablissement L2</th>
                             <th scope="col">MGP L2</th>
                             <th scope="col">Numero</th>
                             <th scope="col">Filiere</th>
-                            <th scope="col">Numero Acte</th>
                             <th scope="col">Date Naissance</th>
                             <th scope="col">Lieu Naissance</th>
                             <th scope="col">Langue</th>
-                            <th scope="col">Adresse</th>
                             <th scope="col">Provenance Diplome</th>
                         </tr>
                     </thead>
@@ -83,17 +79,13 @@
                             <td>{{$candidat->moyenne}}</td>
                             <td>{{$candidat->age}}</td>
                             <td>{{$candidat->region}}</td>
-                            <td>{{$candidat->nomEtb1}}</td>
-                            <td>{{$candidat->mgp1}}</td>
                             <td>{{$candidat->nomEtb2}}</td>
                             <td>{{$candidat->mgp2}}</td>
                             <td>{{$candidat->numero}}</td>
                             <td>{{$candidat->filiere}}</td>
-                            <td>{{$candidat->numActe}}</td>
                             <td>{{$candidat->dateNaiss}}</td>
                             <td>{{$candidat->lieuNaiss}}</td>
                             <td>{{$candidat->langue}}</td>
-                            <td>{{$candidat->adresse}}</td>
                             <td>{{$candidat->provDiplome}}</td>
                         </tr>
                         @endforeach

@@ -30,7 +30,7 @@
 
                     <div class="card-body">
 
-                        <form id="multi-step-form" method="post" action="{{ url('/submit-licence1') }}"> 
+                        <form id="multi-step-form" method="post" action="{{ url('/submit-licence1') }}" enctype="multipart/form-data"> 
                             @csrf
                             <div class="step" id="step1">
                                 <div class="form-group md-3 py-3">
@@ -231,6 +231,16 @@
                                         <option value="GCE board">GCE board</option>
                                         <option value="Autre">Autre</option>
                                     </select>
+                                </div>
+
+                                <div class="form-group md-3 py-1">
+                                    <label for="formFile" class="form-label">Default Acte</label>
+                                    <input class="form-control" type="file" name="acte_naissance" id="">
+                                </div>
+
+                                <div class="form-group md-3 py-3">
+                                    <label for="formFile" class="form-label">Default Releve BAC</label>
+                                    <input class="form-control" type="file" name="releve_bac" id="">
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>

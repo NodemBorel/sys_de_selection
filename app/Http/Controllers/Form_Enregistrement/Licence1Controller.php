@@ -16,6 +16,16 @@ class Licence1Controller extends Controller
 
         $etudiant = new Licence1();
 
+        $file1 = $request->acte_naissance;
+        $filename = $file1->getClientOriginalName();
+        $request->acte_naissance->move('uploads/L1', $filename);
+        $etudiant->acte_naissance = $filename;
+
+        $file2 = $request->releve_bac;
+        $filename = $file2->getClientOriginalName();
+        $request->releve_bac->move('uploads/L1', $filename);
+        $etudiant->releve_bac = $filename;
+
         $etudiant->nom = $request->nom;
         $etudiant->prenom = $request->prenom;
         $etudiant->sexe = $request->sexe;

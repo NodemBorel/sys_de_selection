@@ -19,7 +19,7 @@ class Licence1Controller extends Controller
 
         $nationalite = $request->input('nationalite');
         $moyenneBaccalaureat = (float)$request->input('moyenne');
-        //$typebaccalaureat = $request->input('typebaccalaureat');
+        $typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
         $pourcentageFemmes = $request->input('pourcentageFemmes');
         $pourcentageHommes = $request->input('pourcentageHommes');
@@ -37,6 +37,10 @@ class Licence1Controller extends Controller
 
         if ($filiere) {
             $query->where('filiere', $filiere);
+        }
+
+        if ($typebaccalaureat) {
+            $query->where('typebaccalaureat', $typebaccalaureat);
         }
 
         if($filiere){
