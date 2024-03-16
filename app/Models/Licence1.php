@@ -31,5 +31,7 @@ class Licence1 extends Model
         'adresse',
         'anneebac',
         'delivBac',
+        'acte_naissance',
+        'releve_bac',
     ];
 }

@@ -17,12 +17,12 @@ class Licence1Controller extends Controller
         $etudiant = new Licence1();
 
         $file1 = $request->acte_naissance;
-        $filename = $file1->getClientOriginalName();
+        $filename = time().'A.'.$file1->getClientOriginalExtension();
         $request->acte_naissance->move('uploads/L1', $filename);
         $etudiant->acte_naissance = $filename;
 
         $file2 = $request->releve_bac;
-        $filename = $file2->getClientOriginalName();
+        $filename = time().'R.'.$file2->getClientOriginalExtension();
         $request->releve_bac->move('uploads/L1', $filename);
         $etudiant->releve_bac = $filename;
 

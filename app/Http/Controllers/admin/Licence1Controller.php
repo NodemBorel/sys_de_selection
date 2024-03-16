@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Licence1;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Stroage;
 use App\Http\Controllers\Controller;
 use App\Models\Licence1Select;
 use Illuminate\Support\Facades\File;
@@ -188,6 +189,29 @@ class Licence1Controller extends Controller
             'message1' => 'Arrete avec success',
             'message2' => 'Effectue avec success',
         ]);
+    }
+
+    /*public function downloadActeNaiss($acte_naissance) {
+        $filePath = public_path('uploads/L1/'.$acte_naissance);
+        //dd($filePath);
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Provide file for download
+            return response()->download($filePath);
+        } else {
+            // Return error response or handle the situation as needed
+            return response()->json(['error' => 'File not found'], 404);
+        }
+    }    */
+
+    public function view_acte_naiss($doc){
+        $data = Licence1::find($doc);
+        return view('Admin/ViewDoc/ViewActeNaissL1', compact('data'));
+    }
+
+    public function view_releve($doc){
+        $data = Licence1::find($doc);
+        return view('Admin/ViewDoc/ViewReleveL1', compact('data'));
     }
 
     public function validselect(){

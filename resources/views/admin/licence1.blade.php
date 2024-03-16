@@ -65,6 +65,8 @@
                                         <th>Region</th>
                                         <th>Nom de l'Etablissement</th>
                                         <th>Filiere</th>
+                                        <th>Acte Naissance</th>
+                                        <th>Releve BAC</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,6 +84,8 @@
                                             <td>{{ $candidat->region }}</td>
                                             <td>{{ $candidat->nomEtb }}</td>
                                             <td>{{ $candidat->filiere }}</td>
+                                            <td><a href="{{url('/view_acte_naiss',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download_acte_naiss',$candidat->acte_naissance)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
+                                            <td><a href="{{url('/view_releve',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download',$candidat->releve_bac)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
                                         </tr>
                                     @endforeach
                                 </tbody>

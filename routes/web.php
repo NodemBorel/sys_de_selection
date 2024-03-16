@@ -64,6 +64,9 @@ Route::get('/dashboard', [AuthenticationController::class, 'dashboard'])->middle
 Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
+//Route::get('download_acte_naiss/{acte_naissance}', [AdminLicence1Controller::class, 'downloadActeNaiss']);
+Route::get('/view_acte_naiss/{doc}', [AdminLicence1Controller::class, 'view_acte_naiss']);
+Route::get('/view_releve/{doc}', [AdminLicence1Controller::class, 'view_releve']);
 Route::post('/block-links_l1', [AdminLicence1Controller::class, 'blockUnblockLinks']);
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
 Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);

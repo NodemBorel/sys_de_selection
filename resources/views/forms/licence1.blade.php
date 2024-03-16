@@ -54,7 +54,57 @@
                                 </div><br>
                                 <div class="py-2"></div>
 
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Date de naissance</label>
+                                    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                                </div>
+
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Lieu de naissance</label>
+                                    <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
+                                </div>
+
+                                <div class="form-group md-3 py-2">
+                                    <label for="">Numéro acte de naissance</label>
+                                    <input type="text" class="form-control" id="numero_acte" name="numero_acte" required>
+                                </div>
+
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Région</label>
+                                    <select class="form-control" name="region" id="region">
+                                        <option value="">CHOIX REGION</option>
+                                        <option value="Centre">Centre</option>
+                                        <option value="Nord">Nord</option>
+                                        <option value="Sud">Sud</option>
+                                        <option value="Est">Est</option>
+                                        <option value="Ouest">Ouest</option>
+                                        <option value="Nord-Ouest">Nord-Ouest</option>
+                                        <option value="Nord-Est">Nord-Est</option>
+                                        <option value="Sud-Ouest">Sud-Ouest</option>
+                                        <option value="Sud-Est">Sud-Est</option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group md-3 py-3">
+                                    <label for="formFile" class="form-label">Joindre l'acte de naissance scanné(.pdf)</label>
+                                    <input class="form-control" type="file" name="acte_naissance" id="">
+                                </div>
+
+                                <button type="button" class="btn btn-primary next-step hov">Next</button>
+                            </div>
+
+                            <div class="step" id="step2" style="display: none;">
+                                <div class="form-group md-3 py-3">
+                                    <label for="numero_acte">Numero acte de la CNI</label>
+                                    <input type="text" class="form-control" id="numero_CNI" name="numero_CNI" required>
+                                </div>
+
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Âge</label>
+                                    <input type="number" min="10" max="100" id="age" name="age" class="form-control">
+                                </div>
+
+                                <div class="form-group md-3 py-2">
                                     <label for="">Nationalité</label>
                                     <select class="form-control" name="nationalite" id="nationalite">
                                         <option value="">CHOIX NATIONALITE</option>
@@ -114,16 +164,32 @@
                                     </select>
                                 </div>
 
-                                <button type="button" class="btn btn-primary next-step hov">Next</button>
-                            </div>
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Adresse</label>
+                                    <input type="text" class="form-control" id="adresse" name="adresse" required>
+                                </div>
 
-                            <div class="step" id="step2" style="display: none;">
-                                <div class="form-group md-3 py-3">
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Numéro</label>
+                                    <input type="number" id="numero" name="numero" class="form-control">
+                                </div>
+
+                                <div class="form-group md-3 py-1">
                                     <label for="">Adresse Email</label>
                                     <input type="email" id="email" name="email" class="form-control">
                                 </div>
 
-                                <div class="form-group md-3 py-1">
+                                <div class="form-group md-3 py-3">
+                                    <label for="">Joindre la carte nationale d'identité scannée(.pdf)</label>
+                                    <input type="file" class="form-control" id="cni" name="cni" required>
+                                </div>
+
+                                <button type="button" class="btn btn-warning prev-step">Previous</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
+                            </div>
+
+                            <div class="step" id="step3" style="display: none;">
+                                <div class="form-group md-3 py-3">
                                     <label for="">Type de baccalauréat</label>
                                     <select class="form-control" name="typebaccalaureat" id="typebaccalaureat">
                                         <option value="">CHOIX TYPE DE BACCALAUREAT</option>
@@ -139,91 +205,21 @@
                                 </div>
 
                                 <div class="form-group md-3 py-1">
-                                    <label for="">Âge</label>
-                                    <input type="number" min="10" max="100" id="age" name="age" class="form-control">
+                                    <label for="annee_baccalaureat">Mension au  baccalauréat</label>
+                                    <input type="text" class="form-control" id="mension_baccalaureat" name="mension_baccalaureat" required>
                                 </div>
 
-                                <div class="form-group md-3 py-3">
-                                    <label for="">Région</label>
-                                    <select class="form-control" name="region" id="region">
-                                        <option value="">CHOIX REGION</option>
-                                        <option value="Centre">Centre</option>
-                                        <option value="Nord">Nord</option>
-                                        <option value="Sud">Sud</option>
-                                        <option value="Est">Est</option>
-                                        <option value="Ouest">Ouest</option>
-                                        <option value="Nord-Ouest">Nord-Ouest</option>
-                                        <option value="Nord-Est">Nord-Est</option>
-                                        <option value="Sud-Ouest">Sud-Ouest</option>
-                                        <option value="Sud-Est">Sud-Est</option>
-                                    </select>
-                                </div>
-
-                                <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
-                            </div>
-
-                            <div class="step" id="step3" style="display: none;">
-                                <div class="form-group md-3 py-3">
-                                    <label for="">Nom Établissement</label>
-                                    <input type="text" id="nomEtb" name="nomEtb" class="form-control">
-                                </div>
-
-                                <div class="form-group md-3 py-1">
-                                    <label for="">Numéro</label>
-                                    <input type="number" id="numero" name="numero" class="form-control">
-                                </div>
-
-                                <div class="form-group md-3 py-1">
-                                    <label for="">Filière</label>
-                                    <select class="form-control"  name="filiere" id="filiere">
-                                        <option value="">CHOIX FILIERE</option>
-                                        <option value="ICT4D">ICT4D</option>
-                                        <option value="Informatique">Informatique</option>
-                                        <option value="Mathematique">Mathematique</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group md-3 py-1">
-                                    <label for="">Numéro acte de naissance</label>
-                                    <input type="text" class="form-control" id="numero_acte" name="numero_acte" required>
-                                </div>
-            
-                                <div class="form-group md-3 py-3">
-                                    <label for="">Date de naissance</label>
-                                    <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
-                                </div>
-
-                                <button type="button" class="btn btn-warning prev-step">Previous</button>
-                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
-                            </div>
-
-                            <div class="step" id="step4" style="display: none;">
-                                <div class="form-group md-3 py-3">
-                                    <label for="">Lieu de naissance</label>
-                                    <input type="text" class="form-control" id="lieu_naissance" name="lieu_naissance" required>
-                                </div>
-
-                                <div class="form-group md-3 py-1">
-                                    <label for="">Langue</label>
-                                    <select class="form-control"  name="langue" id="langue">
-                                        <option value="">CHOIX LANGUE</option>
-                                        <option value="Anglais">ANGLAIS</option>
-                                        <option value="Français">Français</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group md-3 py-1">
-                                    <label for="">Adresse</label>
-                                    <input type="text" class="form-control" id="adresse" name="adresse" required>
-                                </div>
-            
                                 <div class="form-group md-3 py-1">
                                     <label for="">Année du baccalauréat</label>
                                     <input type="text" class="form-control" id="annee_baccalaureat" name="annee_baccalaureat" required>
                                 </div>
 
-                                <div class="form-group md-3 py-3">
+                                <div class="form-group md-3 py-1">
+                                    <label for="">Nom Établissement</label>
+                                    <input type="text" id="nomEtb" name="nomEtb" class="form-control">
+                                </div>
+
+                                <div class="form-group md-3 py-2">
                                     <label for="">Diplôme Délivré par</label>
                                     <select class="form-control"  name="diplome_deliv" id="diplome_deliv">
                                         <option value="">DIPLOME DELIVRER PAR</option>
@@ -233,14 +229,33 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group md-3 py-1">
-                                    <label for="formFile" class="form-label">Default Acte</label>
-                                    <input class="form-control" type="file" name="acte_naissance" id="">
+                                <div class="form-group md-3 py-3">
+                                    <label for="formFile" class="form-label">Joindre le Releve BACC scanné(.pdf)</label>
+                                    <input class="form-control" type="file" name="releve_bac" id="">
+                                </div>
+
+                                <button type="button" class="btn btn-warning prev-step">Previous</button>
+                                <button type="button" class="btn btn-primary next-step float-end hov">Next</button>
+                            </div>
+
+                            <div class="step" id="step4" style="display: none;">
+                                <div class="form-group md-3 py-3">
+                                    <label for="">Filière</label>
+                                    <select class="form-control"  name="filiere" id="filiere">
+                                        <option value="">CHOIX FILIERE</option>
+                                        <option value="ICT4D">ICT4D</option>
+                                        <option value="Informatique">Informatique</option>
+                                        <option value="Mathematique">Mathematique</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group md-3 py-3">
-                                    <label for="formFile" class="form-label">Default Releve BAC</label>
-                                    <input class="form-control" type="file" name="releve_bac" id="">
+                                    <label for="">Langue</label>
+                                    <select class="form-control"  name="langue" id="langue">
+                                        <option value="">CHOIX LANGUE</option>
+                                        <option value="Anglais">ANGLAIS</option>
+                                        <option value="Français">Français</option>
+                                    </select>
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
