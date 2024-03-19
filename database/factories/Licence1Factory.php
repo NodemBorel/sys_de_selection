@@ -42,6 +42,8 @@ class Licence1Factory extends Factory
             'adresse' => $this->faker->address,
             'anneebac' => $this->faker->numberBetween(2000, 2023),
             'delivBac' => $this->faker->randomElement(['OBC', 'GCE Board']),
+            'acte_naissance' => $this->faker->randomElement(['1710156085A.pdf', '1710156085R.pdf']),
+            'releve_bac' => $this->faker->randomElement(['1710156085A.pdf', '1710156085R.pdf']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

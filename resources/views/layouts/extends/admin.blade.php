@@ -97,7 +97,9 @@
             });
         });
         $(document).ready(function(){
-            $('#myDataTable2').DataTable();
+            $('#myDataTable2').DataTable({
+                "pageLength": 5 // Display 5 records per page
+            });
         });
     </script>
     
