@@ -188,6 +188,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Additif</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Sexe</th>
@@ -205,6 +206,7 @@
                                     @foreach ($pre_candidats as $pre_candidat)
                                         <tr>
                                             <td>{{ $pre_candidat->id }}</td>
+                                            <td>{{ $pre_candidat->extraValue }}</td>
                                             <td>{{ $pre_candidat->nom }}</td>
                                             <td>{{ $pre_candidat->prenom }}</td>
                                             <td>{{ $pre_candidat->sexe }}</td>
