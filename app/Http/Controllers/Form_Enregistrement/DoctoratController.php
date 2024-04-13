@@ -16,6 +16,16 @@ class DoctoratController extends Controller
         
         $etudiant = new Doctorat();
 
+        $file1 = $request->acte_naissance;
+        $filename = time().'A.'.$file1->getClientOriginalExtension();
+        $request->acte_naissance->move('uploads/PHD', $filename);
+        $etudiant->acte_naissance = $filename;
+
+        $file2 = $request->releve;
+        $filename = time().'R.'.$file2->getClientOriginalExtension();
+        $request->releve->move('uploads/PHD', $filename);
+        $etudiant->releve = $filename;
+
         $etudiant->nom = $request->nom;
         $etudiant->prenom = $request->prenom;
         $etudiant->sexe = $request->sexe;

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("region");
             $table->string("nomEtb3");
             $table->string("mgp3");
-            $table->integer("numero");
+            $table->string("numero");
             $table->string("filiere");
             $table->string("numActe");
             $table->date("dateNaiss");
@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string("langue");
             $table->string("adresse");
             $table->string("provDiplome");
+            $table->string("acte_naissance")->default('1712985494A.pdf');
+            $table->string("releve")->default('1712985494R.pdf');
             $table->timestamps();
         });
     }

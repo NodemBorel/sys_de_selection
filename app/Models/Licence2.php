@@ -32,5 +32,7 @@ class Licence2 extends Model
         'adresse',
         'delivBac',
         'provDiplome',
+        'acte_naissance',
+        'releve',
     ];
 }

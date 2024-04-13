@@ -42,6 +42,8 @@ class Licence3Factory extends Factory
             'langue' => $this->faker->randomElement(['Anglais', 'Français']),
             'adresse' => $this->faker->address,
             'provDiplome' => $this->faker->state,
+            'acte_naissance' => $this->faker->randomElement(['1712985494R.pdf', '1712985494A.pdf']),
+            'releve' => $this->faker->randomElement(['1712985494R.pdf', '1712985494A.pdf']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

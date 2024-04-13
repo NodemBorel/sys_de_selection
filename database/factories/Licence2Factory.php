@@ -41,6 +41,8 @@ class Licence2Factory extends Factory
             'adresse' => $this->faker->address,
             'delivBac' => $this->faker->randomElement(['OBC', 'GCE Board']),
             'provDiplome' => $this->faker->state,
+            'acte_naissance' => $this->faker->randomElement(['1712985494R.pdf', '1712985494A.pdf']),
+            'releve' => $this->faker->randomElement(['1712985494R.pdf', '1712985494A.pdf']),
             'created_at' => now(),
             'updated_at' => now(),
         ];

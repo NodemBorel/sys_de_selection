@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float("age");
             $table->string("region");
             $table->string("nomEtb");
-            $table->integer("numero");
+            $table->string("numero");
             $table->string("filiere");
             $table->string("numActe");
             $table->date("dateNaiss");

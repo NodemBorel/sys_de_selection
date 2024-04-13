@@ -23,7 +23,7 @@ return new class extends Migration
             $table->float("age");
             $table->string("region");
             $table->string("nomEtb");
-            $table->integer("numero");
+            $table->string("numero");
             $table->string("filiere");
             $table->string("numActe");
             $table->date("dateNaiss");
@@ -32,8 +32,8 @@ return new class extends Migration
             $table->string("adresse");
             $table->integer("anneebac");
             $table->string("delivBac");
-            $table->string("acte_naissance");
-            $table->string("releve_bac");
+            $table->string("acte_naissance")->default('1712985494A.pdf');
+            $table->string("releve_bac")->default('1712985494R.pdf');
             $table->timestamps();
         });
     }

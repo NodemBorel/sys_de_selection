@@ -14,7 +14,43 @@ class Licence3Controller extends Controller
 
     public function save(Request $request){
 
+        $request->validate([
+            'acte_naissance' => 'required|file',
+            'releve' => 'required|file',
+            'nom' => 'required|string',
+            'prenom' => 'required|string',
+            'sexe' => 'required|string',
+            'nationalite' => 'required|string',
+            'email' => 'required|email',
+            'typebaccalaureat' => 'required|string',
+            'moyenne' => 'required|numeric|between:0,20',
+            'age' => 'required|numeric',
+            'region' => 'required|string',
+            'nomEtb1' => 'required|string',
+            'mgp1' => 'required|numeric',
+            'nomEtb2' => 'required|string',
+            'mgp2' => 'required|numeric',
+            'numero' => 'required|string',
+            'filiere' => 'required|string',
+            'numero_acte' => 'required|string',
+            'date_naissance' => 'required|date',
+            'lieu_naissance' => 'required|string',
+            'langue' => 'required|string',
+            'adresse' => 'required|string',
+            'provDiplome' => 'required|string',
+        ]);
+
         $etudiant = new Licence3();
+
+        $file1 = $request->acte_naissance;
+        $filename = time().'A.'.$file1->getClientOriginalExtension();
+        $request->acte_naissance->move('uploads/L3', $filename);
+        $etudiant->acte_naissance = $filename;
+
+        $file2 = $request->releve;
+        $filename = time().'R.'.$file2->getClientOriginalExtension();
+        $request->releve->move('uploads/L3', $filename);
+        $etudiant->releve = $filename;
 
         $etudiant->nom = $request->nom;
         $etudiant->prenom = $request->prenom;

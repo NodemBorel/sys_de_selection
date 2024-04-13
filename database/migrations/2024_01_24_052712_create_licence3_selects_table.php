@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string("mgp1");
             $table->string("nomEtb2");
             $table->string("mgp2");
-            $table->integer("numero");
+            $table->string("numero");
             $table->string("filiere");
             $table->string("numActe");
             $table->date("dateNaiss");

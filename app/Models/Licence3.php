@@ -33,5 +33,7 @@ class Licence3 extends Model
         'langue',
         'adresse',
         'provDiplome',
+        'acte_naissance',
+        'releve',
     ];
 }

@@ -14,26 +14,36 @@ class Master1Controller extends Controller
 
     public function save(Request $request){
 
-        $etudaiant = new Master1();
+        $etudiant = new Master1();
 
-        $etudaiant->nom = $request->nom;
-        $etudaiant->prenom = $request->prenom;
-        $etudaiant->sexe = $request->sexe;
-        $etudaiant->nationalite = $request->nationalite;
-        $etudaiant->email = $request->email;
-        $etudaiant->age = $request->age;
-        $etudaiant->region = $request->region;
-        $etudaiant->nomEtb3 = $request->nomEtb3;
-        $etudaiant->mgp3 = $request->mgp3;
-        $etudaiant->numero = $request->numero;
-        $etudaiant->filiere = $request->filiere;
-        $etudaiant->numActe = $request->numero_acte;
-        $etudaiant->dateNaiss = $request->date_naissance;
-        $etudaiant->lieuNaiss = $request->lieu_naissance;
-        $etudaiant->langue = $request->langue;
-        $etudaiant->adresse = $request->adresse;
-        $etudaiant->provDiplome = $request->provDiplome;
-        $etudaiant->save();
+        $file1 = $request->acte_naissance;
+        $filename = time().'A.'.$file1->getClientOriginalExtension();
+        $request->acte_naissance->move('uploads/M1', $filename);
+        $etudiant->acte_naissance = $filename;
+
+        $file2 = $request->releve;
+        $filename = time().'R.'.$file2->getClientOriginalExtension();
+        $request->releve->move('uploads/M1', $filename);
+        $etudiant->releve = $filename;
+
+        $etudiant->nom = $request->nom;
+        $etudiant->prenom = $request->prenom;
+        $etudiant->sexe = $request->sexe;
+        $etudiant->nationalite = $request->nationalite;
+        $etudiant->email = $request->email;
+        $etudiant->age = $request->age;
+        $etudiant->region = $request->region;
+        $etudiant->nomEtb3 = $request->nomEtb3;
+        $etudiant->mgp3 = $request->mgp3;
+        $etudiant->numero = $request->numero;
+        $etudiant->filiere = $request->filiere;
+        $etudiant->numActe = $request->numero_acte;
+        $etudiant->dateNaiss = $request->date_naissance;
+        $etudiant->lieuNaiss = $request->lieu_naissance;
+        $etudiant->langue = $request->langue;
+        $etudiant->adresse = $request->adresse;
+        $etudiant->provDiplome = $request->provDiplome;
+        $etudiant->save();
 
         return redirect('/master-1')->with('message', 'Vos Informations sont enrégistrées avec succes!');
     }

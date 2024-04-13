@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string("region");
             $table->string("nomEtb1");
             $table->string("mgp1");
-            $table->integer("numero");
+            $table->string("numero");
             $table->string("filiere");
             $table->string("numActe");
             $table->date("dateNaiss");
