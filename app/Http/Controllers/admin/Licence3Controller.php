@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Licence3Select;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Licence3;
 use Illuminate\Support\Facades\File;
 
 class Licence3Controller extends Controller
@@ -18,6 +19,7 @@ class Licence3Controller extends Controller
 
         $nationalite = $request->input('nationalite');
         $moyenneBaccalaureat = (float)$request->input('moyenne');
+        $mgp = $request->input('mgp'); 
         //$typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
         $pourcentageFemmes = $request->input('pourcentageFemmes');
@@ -34,11 +36,15 @@ class Licence3Controller extends Controller
             $query->where('moyenne', '>=', $moyenneBaccalaureat);
         }
 
+        if ($mgp) {
+            $query->where('mgp2', '>=', $mgp);
+        }
+
         if ($filiere) {
             $query->where('filiere', $filiere);
         }
 
-        if($filiere){
+        if($age){
             $query->where('age', '>=', $age);
         }
 
@@ -183,6 +189,16 @@ class Licence3Controller extends Controller
             'message1' => 'Arrete avec success',
             'message2' => 'Effectue avec success',
         ]);
+    }
+
+    public function view_acte_naiss($doc){
+        $data = Licence3::find($doc);
+        return view('Admin/ViewDoc/ViewActeNaissL3', compact('data'));
+    }
+
+    public function view_releve($doc){
+        $data = Licence3::find($doc);
+        return view('Admin/ViewDoc/ViewReleveL3', compact('data'));
     }
 
     public function validselect(){

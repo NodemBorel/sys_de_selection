@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Licence2Select;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Licence2;
 use Illuminate\Support\Facades\File;
 
 class Licence2Controller extends Controller
@@ -18,8 +19,9 @@ class Licence2Controller extends Controller
 
         $nationalite = $request->input('nationalite');
         $moyenneBaccalaureat = (float)$request->input('moyenne');
-        //$typebaccalaureat = $request->input('typebaccalaureat');
+        $typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
+        $mgp = $request->input('mgp');
         $pourcentageFemmes = $request->input('pourcentageFemmes');
         $pourcentageHommes = $request->input('pourcentageHommes');
         $pourcentageCmr = $request->input('pourcentageCmr');
@@ -34,11 +36,19 @@ class Licence2Controller extends Controller
             $query->where('moyenne', '>=', $moyenneBaccalaureat);
         }
 
+        if ($mgp) {
+            $query->where('mgp1', '>=', $mgp);
+        }
+
         if ($filiere) {
             $query->where('filiere', $filiere);
         }
 
-        if($filiere){
+        if ($typebaccalaureat) {
+            $query->where('typebaccalaureat', $typebaccalaureat);
+        }
+
+        if($age){
             $query->where('age', '>=', $age);
         }
 
@@ -183,6 +193,16 @@ class Licence2Controller extends Controller
             'message1' => 'Arrete avec success',
             'message2' => 'Effectue avec success',
         ]);
+    }
+
+    public function view_acte_naiss($doc){
+        $data = Licence2::find($doc);
+        return view('Admin/ViewDoc/ViewActeNaissL2', compact('data'));
+    }
+
+    public function view_releve($doc){
+        $data = Licence2::find($doc);
+        return view('Admin/ViewDoc/ViewReleveL2', compact('data'));
     }
 
     public function validselect(){

@@ -65,6 +65,8 @@
                                         <th>Region</th>
                                         <th>mgp L1</th>
                                         <th>Filiere</th>
+                                        <th>Acte Naissance</th>
+                                        <th>Releve L1</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,6 +84,8 @@
                                             <td>{{ $candidat->region }}</td>
                                             <td>{{ $candidat->mgp1 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
+                                            <td><a href="{{url('/view_acte_naiss_l2',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{url('/view_releve_l2',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -130,7 +134,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="age">Âge <= à</label>
+                            <label for="age">Âge >= à</label>
                             <input type="number" class="form-control" id="age" placeholder="Âge" name="age">
                         </div>
 
@@ -160,7 +164,7 @@
                             </select>
                         </div> -->
 
-                        <!--- <div class="form-group">
+                        <div class="form-group">
                             <label for="typebaccalaureat">Baccalauréat</label>
                             <select name="typebaccalaureat" id="type_baccalaureat" class="form-control">
                                 <option value="">CHOIX TYPE DE BAC</option>
@@ -168,7 +172,7 @@
                                 <option value="D">D</option>
                                 <option value="A4">A4</option>
                             </select>
-                        </div>  --->
+                        </div>
 
                         <button name="selectionner" type="submit" class="btn btn-primary">SÉLECTIONNER</button>
                     </form>
@@ -310,8 +314,7 @@
                         </div>
 
                         <div class="col-md">
-                            <a href="email-select2" class="btn btn-primary">Envoyer un Email aux Candidats
-                                Sélectionnés</a>
+                            <a href="email-select2" class="btn btn-primary">Notifier candidats</a>
                         </div>
 
                         <form class="col-md" action="{{ url('delete-select2') }}" method="POST">

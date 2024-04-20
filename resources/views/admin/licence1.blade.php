@@ -84,8 +84,8 @@
                                             <td>{{ $candidat->region }}</td>
                                             <td>{{ $candidat->nomEtb }}</td>
                                             <td>{{ $candidat->filiere }}</td>
-                                            <td><a href="{{url('/view_acte_naiss',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download_acte_naiss',$candidat->acte_naissance)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
-                                            <td><a href="{{url('/view_releve',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download',$candidat->releve_bac)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
+                                            <td><a href="{{url('/view_acte_naiss_l1',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download_acte_naiss',$candidat->acte_naissance)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
+                                            <td><a href="{{url('/view_releve_l1',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a> <!-- <a href="{{url('/download',$candidat->releve_bac)}}" class="btn btn-primary btn-sm" style="display: inline;">download</a> --></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -188,7 +188,6 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Additif</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
                                         <th>Sexe</th>
@@ -206,7 +205,6 @@
                                     @foreach ($pre_candidats as $pre_candidat)
                                         <tr>
                                             <td>{{ $pre_candidat->id }}</td>
-                                            <td>{{ $pre_candidat->extraValue }}</td>
                                             <td>{{ $pre_candidat->nom }}</td>
                                             <td>{{ $pre_candidat->prenom }}</td>
                                             <td>{{ $pre_candidat->sexe }}</td>

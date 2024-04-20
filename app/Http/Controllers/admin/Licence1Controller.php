@@ -44,7 +44,7 @@ class Licence1Controller extends Controller
             $query->where('typebaccalaureat', $typebaccalaureat);
         }
 
-        if($filiere){
+        if($age){
             $query->where('age', '>=', $age);
         }
 
@@ -135,28 +135,9 @@ class Licence1Controller extends Controller
             //$candidats_non = collect([]); // Tableau vide également
         }
 
-        $startValue = session('currentValue', 1); // Retrieve the current value from the session, defaulting to 1
-        $increment = 1; // Increment value
-
         $pre_candidats = $this->candidats;
 
-        foreach ($pre_candidats as $row) {
-            $row->extraValue = 'A' . $startValue;
-        }
-
-        $startValue += $increment; // Increment the value after each selection
-
-        // Preserve the existing data before adding the new data
-        $existingData = session('pre_candidats', []);
-
-        if (!is_array($existingData)) {
-            $existingData = [];
-        }
-
-        $updatedData = array_merge($existingData, $pre_candidats->toArray());
-
-        session(['currentValue' => $startValue]); // Store the updated value in the session
-        session(['pre_candidats' => $updatedData]); // Store the updated data in the session
+        session(['pre_candidats' => $pre_candidats]);
         session()->save(); // Sauvegarde les données de la session
 
         $select = DB::table('licence1_selects')->get();

@@ -65,8 +65,8 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
 //Route::get('download_acte_naiss/{acte_naissance}', [AdminLicence1Controller::class, 'downloadActeNaiss']);
-Route::get('/view_acte_naiss/{doc}', [AdminLicence1Controller::class, 'view_acte_naiss']);
-Route::get('/view_releve/{doc}', [AdminLicence1Controller::class, 'view_releve']);
+Route::get('/view_acte_naiss_l1/{doc}', [AdminLicence1Controller::class, 'view_acte_naiss']);
+Route::get('/view_releve_l1/{doc}', [AdminLicence1Controller::class, 'view_releve']);
 Route::post('/block-links_l1', [AdminLicence1Controller::class, 'blockUnblockLinks']);
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
 Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);
@@ -77,6 +77,8 @@ Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);
 Route::get('/email-select1', [EmailController::class, 'emailNiveau1']);
 
 Route::get('/licence2', [AdminLicence2Controller::class, 'licence2']);
+Route::get('/view_acte_naiss_l2/{doc}', [AdminLicence2Controller::class, 'view_acte_naiss']);
+Route::get('/view_releve_l2/{doc}', [AdminLicence2Controller::class, 'view_releve']);
 Route::post('/block-links_l2', [AdminLicence2Controller::class, 'blockUnblockLinks']);
 Route::post('/licence2_import', [Licence2ImportExport::class, 'import']);
 Route::get('/licence2_export-excel', [Licence2ImportExport::class, 'export']);
@@ -87,6 +89,8 @@ Route::get('/licence2_exportpdf', [Licence2ImportExport::class, 'exportpdf']);
 Route::get('/email-select2', [EmailController::class, 'emailNiveau2']);
 
 Route::get('/licence3', [AdminLicence3Controller::class, 'licence3']);
+Route::get('/view_acte_naiss_l3/{doc}', [AdminLicence3Controller::class, 'view_acte_naiss']);
+Route::get('/view_releve_l3/{doc}', [AdminLicence3Controller::class, 'view_releve']);
 Route::post('/block-links_l3', [AdminLicence3Controller::class, 'blockUnblockLinks']);
 Route::post('/licence3_import', [Licence3ImportExport::class, 'import']);
 Route::get('/licence3_export-excel', [Licence3ImportExport::class, 'export']);

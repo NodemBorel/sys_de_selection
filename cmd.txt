@@ -43,6 +43,7 @@ add provider and alias
 
 php artisan make:factory Licence3Factory --model=Licence3
 php artisan make:seeder Licence3Seeder
+
 php artisan db:seed --class=UsersTableSeeder
 
 =======================================================================================

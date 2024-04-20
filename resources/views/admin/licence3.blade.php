@@ -65,6 +65,8 @@
                                         <th>MGP L2</th>
                                         <th>Nom de l'Etablissement L2</th>
                                         <th>Filiere</th>
+                                        <th>Acte Naissance</th>
+                                        <th>Releve L2</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,6 +84,8 @@
                                             <td>{{ $candidat->mgp2 }}</td>
                                             <td>{{ $candidat->nomEtb2 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
+                                            <td><a href="{{url('/view_acte_naiss_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{url('/view_releve_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -105,6 +109,11 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="moyenne">MGP L2 >= à</label>
+                            <input type="number" class="form-control" id="moyenne" placeholder="MGP" name="mgp">
+                        </div>
+
+                        <div class="form-group">
                             <label for="filiere">Filière</label>
                             <select name="filiere" id="filiere" class="form-control">
                                 <option value="">CHOIX FILIÈRES</option>
@@ -125,7 +134,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="age">Âge <= à</label>
+                            <label for="age">Âge >= à</label>
                             <input type="number" class="form-control" id="age" placeholder="Âge" name="age">
                         </div>
 
@@ -303,8 +312,7 @@
                         </div>
 
                         <div class="col-md">
-                            <a href="email-select3" class="btn btn-primary">Envoyer un Email aux Candidats
-                                Sélectionnés</a>
+                            <a href="email-select3" class="btn btn-primary">Notifier candidats</a>
                         </div>
 
                         <form class="col-md" action="{{ url('delete-select3') }}" method="POST">
