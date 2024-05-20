@@ -30,7 +30,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Default file Import</label>
-                            <input class="form-control" type="file" name="file" id="">
+                            <input class="form-control" type="file" accept=".xls,.xlsx" name="file" id="">
                         </div>
                         <input type="submit" class="btn btn-outline-danger btn-block" value="Import excel">
                     </form>

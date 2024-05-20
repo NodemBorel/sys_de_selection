@@ -121,7 +121,7 @@
 
                                  <div class="form-group md-3 py-3">
                                     <label for="formFile" class="form-label">Joindre l'acte de naissance scanné(.pdf)</label>
-                                    <input class="form-control" type="file" name="acte_naissance" id="" required>
+                                    <input class="form-control" type="file" accept=".pdf" name="acte_naissance" id="" required>
                                 </div>
 
                                 <button type="button" class="btn btn-primary next-step hov">Next</button>
@@ -166,7 +166,7 @@
 
                                 <div class="form-group md-3 py-1">
                                     <label for="formFile" class="form-label">Joindre le Releve scanné(.pdf)</label>
-                                    <input class="form-control" type="file" name="releve" id="" required>
+                                    <input class="form-control" type="file" accept=".pdf" name="releve" id="" required>
                                 </div> 
 
                                 <div class="form-group md-3 py-1">

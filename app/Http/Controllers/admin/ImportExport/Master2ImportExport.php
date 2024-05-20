@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\ImportExport;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Exports\Master2Export;
 use App\Imports\Master2Import;
@@ -12,8 +13,18 @@ use Maatwebsite\Excel\Facades\Excel;
 class Master2ImportExport extends Controller
 {
     public function import(Request $request){
-        Excel::import(new Master2Import, $request->file('file')->store('files'));
-        return redirect('/master2')->with('message', 'Importer avec success');
+        $request->validate([
+            'file' => 'required|file|mimes:xls,xlsx'
+        ]);
+
+        try {
+            $filePath = $request->file('file')->store('files');
+            Excel::import(new Master2Import, $filePath);
+
+            return redirect('/master2')->with('message', 'Importé avec succès');
+        } catch (Exception $e) {
+            return redirect('/master2')->with('message', 'Erreur lors de l\'importation: ' . $e->getMessage());
+        }
     }
 
     public function export(){

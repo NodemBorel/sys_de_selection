@@ -87,7 +87,7 @@
 
                                 <div class="form-group md-3 py-3">
                                     <label for="formFile" class="form-label">Joindre l'acte de naissance scanné(.pdf)</label>
-                                    <input class="form-control" type="file" name="acte_naissance" id="" required>
+                                    <input class="form-control" type="file" accept=".pdf" name="acte_naissance" id="" required>
                                 </div>
 
                                 <button type="button" class="btn btn-primary next-step hov">Next</button>
@@ -181,7 +181,7 @@
 
                                 <div class="form-group md-3 py-3">
                                     <label for="">Joindre la carte nationale d'identité scannée(.pdf)</label>
-                                    <input type="file" class="form-control" id="cni" name="cni">
+                                    <input type="file" accept=".pdf" class="form-control" id="cni" name="cni">
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
@@ -231,7 +231,7 @@
 
                                 <div class="form-group md-3 py-3">
                                     <label for="formFile" class="form-label">Joindre le Releve BACC scanné(.pdf)</label>
-                                    <input class="form-control" type="file" name="releve_bac" id="" required>
+                                    <input class="form-control" type="file" accept=".pdf" name="releve_bac" id="" required>
                                 </div>
 
                                 <button type="button" class="btn btn-warning prev-step">Previous</button>
