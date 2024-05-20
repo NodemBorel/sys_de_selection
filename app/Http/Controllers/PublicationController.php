@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Master1;
 use App\Models\Master2;
 use App\Models\Doctorat;
+use App\Models\DoctoratSelect;
 use App\Models\Licence1;
 use App\Models\Licence2;
 use App\Models\Licence3;
@@ -48,7 +49,7 @@ class PublicationController extends Controller
     }
 
     public function display_doc(){
-        $etudiants = Doctorat::all();
+        $etudiants = DoctoratSelect::all();
         $niveau = "Doctorat";
         return view('publucation', compact('etudiants','niveau'));
     }
