@@ -84,7 +84,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{{ url('/phd') }}" style="text-decoration: none">
+            <a href="{{ url('/doctorat') }}" style="text-decoration: none">
                 <div class="card" style="transition: transform 0.3s;">
                     <i class="bi bi-x"></i>
                     <div class="card-body">

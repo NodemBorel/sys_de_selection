@@ -219,14 +219,12 @@ class Licence1Controller extends Controller
         if ($candidats) {
             $successCount = 0;
             foreach ($candidats as $candidat) {
-                $existingCandidat = Licence1Select::where('id', $candidat->id)
-                    ->first();
-                if (!$existingCandidat) {
-                    $select = new Licence1Select;
-                    $select->fill((array) $candidat);
-                    $select->save();
-                    $successCount++;
-                }
+                
+                $select = new Licence1Select;
+                $select->fill((array) $candidat);
+                $select->save();
+                $successCount++;
+                
             }
 
             if ($successCount > 0) {

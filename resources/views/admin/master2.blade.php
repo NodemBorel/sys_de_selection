@@ -26,7 +26,7 @@
                 <div class="card card-body">
                     <h5>Importer:</h5>
                     <hr>
-                    <form action="{{ url('/licence3_import') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('/master2_import') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Default file Import</label>
@@ -45,7 +45,7 @@
             <div class="col-md">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 3</b>
+                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>MASTER 2</b>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -59,14 +59,12 @@
                                         <th>Sexe</th>
                                         <th>Nationalité</th>
                                         <th>email</th>
-                                        <th>Type Baccalaureat</th>
-                                        <th>Moyenne</th>
                                         <th>Age</th>
-                                        <th>MGP L2</th>
+                                        <th>MGP M1</th>
                                         <th>Nom de l'Etablissement L2</th>
                                         <th>Filiere</th>
                                         <th>Acte Naissance</th>
-                                        <th>Releve L2</th>
+                                        <th>Releve M1</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,14 +76,12 @@
                                             <td>{{ $candidat->sexe }}</td>
                                             <td>{{ $candidat->nationalite }}</td>
                                             <td>{{ $candidat->email }}</td>
-                                            <td>{{ $candidat->typebaccalaureat }}</td>
-                                            <td>{{ $candidat->moyenne }}</td>
                                             <td>{{ $candidat->age }}</td>
-                                            <td>{{ $candidat->mgp2 }}</td>
-                                            <td>{{ $candidat->nomEtb2 }}</td>
+                                            <td>{{ $candidat->mgp4 }}</td>
+                                            <td>{{ $candidat->nomEtb4 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
-                                            <td><a href="{{url('/view_acte_naiss_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
-                                            <td><a href="{{url('/view_releve_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{url('/view_acte_naiss_M2',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{url('/view_releve_M2',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -102,14 +98,10 @@
             <div class="col-md">
                 <div class="card card-body">
                     <h2 style="color: #0088cc;">VEUILLEZ DÉFINIR VOS CRITÈRES DE SÉLECTION</h2>
-                    <form class="form-inline" action="{{ url('/selectlicence3') }}" method="get">
-                        <div class="form-group">
-                            <label for="moyenne">Moyenne Baccalauréat >= à</label>
-                            <input type="number" class="form-control" id="moyenne" placeholder="Moyenne" name="moyenne">
-                        </div>
+                    <form class="form-inline" action="{{ url('/selectmaster2') }}" method="get">
 
                         <div class="form-group">
-                            <label for="moyenne">MGP L2 >= à</label>
+                            <label for="moyenne">MGP M1 >= à</label>
                             <input type="number" class="form-control" id="moyenne" placeholder="MGP" name="mgp">
                         </div>
 
@@ -125,12 +117,12 @@
 
                         <div class="form-group">
                             <label for="pourcentageFemmes">Pourcentage de femmes</label>
-                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="Pourcentage de femmes" name="pourcentageFemmes">
+                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="100 = toute" name="pourcentageFemmes">
                         </div>
                         
                         <div class="form-group">
                             <label for="pourcentageHommes">Pourcentage d'hommes</label>
-                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="Pourcentage d'hommes" name="pourcentageHommes">
+                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="100 = tous" name="pourcentageHommes">
                         </div>
 
                         <div class="form-group">
@@ -140,12 +132,12 @@
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Cameroun</label>
-                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="Pourcentage Cameroun" name="pourcentageCmr">
+                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="100 = tous" name="pourcentageCmr">
                         </div>
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Autre pay</label>
-                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="pourcentage Autre Pay" name="pourcentageAutrePay">
+                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="100 = tous" name="pourcentageAutrePay">
                         </div>
 
                         <!-- <div class="form-group">
@@ -185,7 +177,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS SELECTIONNES À
-                            PARTIR DE CES CRITERES DU <b>NIVEAU 3</b></h4>
+                            PARTIR DE CES CRITERES DU <b>MASTER 2</b></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -198,10 +190,8 @@
                                         <th>Sexe</th>
                                         <th>Nationalité</th>
                                         <th>email</th>
-                                        <th>Type Baccalaureat</th>
-                                        <th>Moyenne</th>
                                         <th>Age</th>
-                                        <th>MGP L2</th>
+                                        <th>MGP M1</th>
                                         <th>Nom de l'Etablissement</th>
                                         <th>Filiere</th>
                                     </tr>
@@ -215,11 +205,9 @@
                                             <td>{{ $pre_candidat->sexe }}</td>
                                             <td>{{ $pre_candidat->nationalite }}</td>
                                             <td>{{ $pre_candidat->email }}</td>
-                                            <td>{{ $pre_candidat->typebaccalaureat }}</td>
-                                            <td>{{ $pre_candidat->moyenne }}</td>
                                             <td>{{ $pre_candidat->age }}</td>
-                                            <td>{{ $pre_candidat->mgp2 }}</td>
-                                            <td>{{ $pre_candidat->nomEtb2 }}</td>
+                                            <td>{{ $pre_candidat->mgp4 }}</td>
+                                            <td>{{ $pre_candidat->nomEtb4 }}</td>
                                             <td>{{ $pre_candidat->filiere }}</td>
                                         </tr>
                                     @endforeach
@@ -232,7 +220,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <form class="my-form" action="{{ url('/validselect3') }}" method="POST">
+            <form class="my-form" action="{{ url('/validselectM2') }}" method="POST">
                 @csrf
                 <div class="my-3 mx-2">
                     <button class="btn btn-primary" type="submit">VALIDER LA SELECTION</button>
@@ -245,7 +233,7 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE VALIDE DES CANDIDATS SELCTIONNES
-                            <b>NIVEAU 3</b>
+                            <b>MASTER 2</b>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -259,12 +247,10 @@
                                         <th>Sexe</th>
                                         <th>Nationalité</th>
                                         <th>email</th>
-                                        <th>Type Baccalaureat</th>
-                                        <th>Moyenne</th>
                                         <th>Age</th>
                                         <th>Region</th>
                                         <th>Filiere</th>
-                                        <th>MGP L2</th>
+                                        <th>MGP M1</th>
                                         <th>Lieu Naissance</th>
                                         <th>Langue</th>
                                     </tr>
@@ -278,12 +264,10 @@
                                             <td>{{ $sel->sexe }}</td>
                                             <td>{{ $sel->nationalite }}</td>
                                             <td>{{ $sel->email }}</td>
-                                            <td>{{ $sel->typebaccalaureat }}</td>
-                                            <td>{{ $sel->moyenne }}</td>
                                             <td>{{ $sel->age }}</td>
                                             <td>{{ $sel->region }}</td>
                                             <td>{{ $sel->filiere }}</td>
-                                            <td>{{ $sel->mgp2 }}</td>
+                                            <td>{{ $sel->mgp4 }}</td>
                                             <td>{{ $sel->lieuNaiss }}</td>
                                             <td>{{ $sel->langue }}</td>
                                         </tr>
@@ -304,18 +288,18 @@
                     <div class="row">
 
                         <div class="col-md">
-                            <a class="btn btn-success" href="{{ url('/licence3_exportpdf') }}">Export pdf</a>
+                            <a class="btn btn-success" href="{{ url('/master2_exportpdf') }}">Export pdf</a>
                         </div>
 
                         <div class="col-md">
-                            <a class="btn btn-warning" href="{{ url('/licence3_export-excel') }}">Export Excel</a>
+                            <a class="btn btn-warning" href="{{ url('/master2_export-excel') }}">Export Excel</a>
                         </div>
 
                         <div class="col-md">
-                            <a href="email-select3" class="btn btn-primary">Notifier candidats</a>
+                            <a href="email-selectM2" class="btn btn-primary">Notifier candidats</a>
                         </div>
 
-                        <form class="col-md" action="{{ url('delete-select3') }}" method="POST">
+                        <form class="col-md" action="{{ url('delete-selectM2') }}" method="POST">
                             @csrf
                             <div class="col-md">
                                 <button class="btn btn-primary" type="submit">VIDER LA LISTE</button>
@@ -350,7 +334,7 @@
         </div>
         <br>
     </div>
-    <script src="{{ asset('styles/js/stop_selection/stop_l3.js') }}"></script>
+    <script src="{{ asset('styles/js/stop_selection/stop_m2.js') }}"></script>
     <script>
         // Récupérez les pourcentages depuis le contrôleur
         var malePercentage = {{ $malePercentage }};

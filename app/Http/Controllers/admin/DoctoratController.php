@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\DoctoratSelect;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Doctorat;
+use Illuminate\Support\Facades\File;
 
 class DoctoratController extends Controller
 {
     private $candidats;
-    public function licence3(Request $request){
+    public function doctorat(Request $request){
 
-        $candidats = DB::table('licence3s')->get();
+        $candidats = DB::table('doctorats')->get();
         //$totalCandidat = $candidats->count();
 
         $nationalite = $request->input('nationalite');
-        $moyenneBaccalaureat = (float)$request->input('moyenne');
         $mgp = $request->input('mgp'); 
         //$typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
@@ -27,14 +29,10 @@ class DoctoratController extends Controller
         //$region = $request->input('region');
         $filiere = $request->input('filiere');
 
-        $query = DB::table('licence3s');
-
-        if ($moyenneBaccalaureat) {
-            $query->where('moyenne', '>=', $moyenneBaccalaureat);
-        }
+        $query = DB::table('doctorats');
 
         if ($mgp) {
-            $query->where('mgp2', '>=', $mgp);
+            $query->where('mgp5', '>=', $mgp);
         }
 
         if ($filiere) {
@@ -55,7 +53,7 @@ class DoctoratController extends Controller
         $numberOfCameroonPeople = ceil(($pourcentageCmr / 100) * $totalCandidat);
         $cameroonPeople = $preSelect->where('filiere', $filiere)
             ->where('nationalite', 'Cameroun')
-            ->sortByDesc('moyenne')
+            ->sortByDesc('mgp5')
             ->take($numberOfCameroonPeople)
             ->pluck([]);
             //dd($cameroonPeople);
@@ -64,7 +62,7 @@ class DoctoratController extends Controller
         $numberOfOtherCountriesPeople = ceil(($pourcentageAutrePay / 100) * $totalCandidat);
         $otherCountriesPeople = $preSelect->where('filiere', $filiere)
             ->where('nationalite', '!=', 'Cameroun')
-            ->sortByDesc('moyenne')
+            ->sortByDesc('mgp5')
             ->take($numberOfOtherCountriesPeople)
             ->pluck([]);
             //dd($otherCountriesPeople);
@@ -85,7 +83,7 @@ class DoctoratController extends Controller
         $numberOfBoys = ceil(($pourcentageHommes / 100) * $totalCandidatCountry);
         //dd($numberOfBoys);
         $boys = $CountrySelectResult->where('sexe', 'Masculin')
-            ->sortByDesc('moyenne')
+            ->sortByDesc('mgp5')
             ->take($numberOfBoys)
             ->pluck([]);
             //dd($boys);
@@ -94,7 +92,7 @@ class DoctoratController extends Controller
         $numberOfGirls = ceil(($pourcentageFemmes / 100) * $totalCandidatCountry);
         //dd($numberOfGirls);
         $girls = $CountrySelectResult->where('sexe', 'Féminin')
-            ->sortByDesc('moyenne')
+            ->sortByDesc('mgp5')
             ->take($numberOfGirls)
             ->pluck([]);   
             //dd($girls);
@@ -137,20 +135,20 @@ class DoctoratController extends Controller
         session(['pre_candidats' => $pre_candidats]);
         session()->save(); // Sauvegarde les données de la session
 
-        $select = DB::table('licence3_selects')->get();
+        $select = DB::table('doctorat_selects')->get();
 
         //  Pourcentages de sexe
         //The max(1, ...) function ensures that the $totalUsers variable is always at least 1 to avoid division by zero errors.
-        $totalUsers = max(1, Licence3Select::count());
-        $maleCount = Licence3Select::where('sexe', 'Masculin')->count();
-        $femaleCount = Licence3Select::where('sexe', 'Feminin')->count();
+        $totalUsers = max(1, DoctoratSelect::count());
+        $maleCount = DoctoratSelect::where('sexe', 'Masculin')->count();
+        $femaleCount = DoctoratSelect::where('sexe', 'Feminin')->count();
 
         // Calcul des pourcentages
         $malePercentage = ($maleCount / $totalUsers) * 100;
         $femalePercentage = ($femaleCount / $totalUsers) * 100;
 
         //These lines extract the ages of the users using the pluck() method on the Licence1Select model, extracting the 'age' column values. The ages are then converted to an array using toArray().
-        $ages = Licence3Select::pluck('age')->toArray();
+        $ages = DoctoratSelect::pluck('age')->toArray();
 
         $averageAge = count($ages) > 0 ? array_sum($ages) / count($ages) : 0;
         //$minAge uses the min() function to find the minimum age from the ages array. If there are no ages, 0 is assigned.
@@ -168,7 +166,7 @@ class DoctoratController extends Controller
             'maxAge' => $maxAge,
         ];
 
-        return view('admin.licence3',$data);
+        return view('admin.doctorat',$data);
     }
 
     public function blockUnblockLinks(Request $request)
@@ -189,13 +187,13 @@ class DoctoratController extends Controller
     }
 
     public function view_acte_naiss($doc){
-        $data = Licence3::find($doc);
-        return view('Admin/ViewDoc/ViewActeNaissL3', compact('data'));
+        $data = Doctorat::find($doc);
+        return view('Admin/ViewDoc/ViewActeNaissPHD', compact('data'));
     }
 
     public function view_releve($doc){
-        $data = Licence3::find($doc);
-        return view('Admin/ViewDoc/ViewReleveL3', compact('data'));
+        $data = Doctorat::find($doc);
+        return view('Admin/ViewDoc/ViewRelevePHD', compact('data'));
     }
 
     public function validselect(){
@@ -203,10 +201,10 @@ class DoctoratController extends Controller
         if ($candidats) {
             $successCount = 0;
             foreach ($candidats as $candidat) {
-                $existingCandidat = Licence3Select::where('id', $candidat->id)
+                $existingCandidat = DoctoratSelect::where('id', $candidat->id)
                     ->first();
                 if (!$existingCandidat) {
-                    $select = new Licence3Select;
+                    $select = new DoctoratSelect;
                     $select->fill((array) $candidat);
                     $select->save();
                     $successCount++;
@@ -228,7 +226,7 @@ class DoctoratController extends Controller
 
     public function delete_select(){
 
-        DB::table('licence3_selects')->truncate();
+        DB::table('doctorat_selects')->truncate();
 
         return redirect()->back();
     }

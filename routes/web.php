@@ -141,3 +141,4 @@ Route::post('/validselectPHD', [AdminDoctoratController::class, 'validselect']);
 Route::post('/delete-selectPHD', [AdminDoctoratController::class, 'delete_select']);
 Route::get('/doctorat_exportpdf', [DoctoratImportExport::class, 'exportpdf']);
 Route::get('/email-selectPHD', [EmailController::class, 'emailDoctorat']);
+

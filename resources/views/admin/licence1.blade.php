@@ -120,12 +120,12 @@
 
                         <div class="form-group">
                             <label for="pourcentageFemmes">Pourcentage de femmes</label>
-                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="Pourcentage de femmes" name="pourcentageFemmes">
+                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="100 = toute" name="pourcentageFemmes">
                         </div>
                         
                         <div class="form-group">
                             <label for="pourcentageHommes">Pourcentage d'hommes</label>
-                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="Pourcentage d'hommes" name="pourcentageHommes">
+                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="100 = tous" name="pourcentageHommes">
                         </div>
 
                         <div class="form-group">
@@ -135,12 +135,12 @@
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Cameroun</label>
-                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="Pourcentage Cameroun" name="pourcentageCmr">
+                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="100 = tous" name="pourcentageCmr">
                         </div>
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Autre pay</label>
-                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="pourcentage Autre Pay" name="pourcentageAutrePay">
+                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="100 = tous" name="pourcentageAutrePay">
                         </div>
 
                         <!-- <div class="form-group">

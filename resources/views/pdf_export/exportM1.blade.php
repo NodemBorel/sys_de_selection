@@ -41,7 +41,7 @@
         </div>
 
         <div class="my-3 p-3 bg-body rounded shadow-sn">
-            <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc; font-style: italic;">LISTE DES CANDIDATS SELECTIONNES  DU MASTER 1</h4>
+            <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc; font-style: italic;">LISTE DES CANDIDATS SELECTIONNES DU MASTER 1</h4>
             <div class="center-table">
                 <table class="table table-bordered table-hover">
                     <thead>

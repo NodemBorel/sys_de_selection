@@ -206,14 +206,12 @@ class Licence3Controller extends Controller
         if ($candidats) {
             $successCount = 0;
             foreach ($candidats as $candidat) {
-                $existingCandidat = Licence3Select::where('id', $candidat->id)
-                    ->first();
-                if (!$existingCandidat) {
-                    $select = new Licence3Select;
-                    $select->fill((array) $candidat);
-                    $select->save();
-                    $successCount++;
-                }
+                
+                $select = new Licence3Select;
+                $select->fill((array) $candidat);
+                $select->save();
+                $successCount++;
+                
             }
 
             if ($successCount > 0) {

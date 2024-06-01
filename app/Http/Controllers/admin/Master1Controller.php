@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\Master1Select;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Master1;
+use Illuminate\Support\Facades\File;
 
 class Master1Controller extends Controller
 {
     private $candidats;
     public function master1(Request $request){
 
-        $candidats = DB::table('licence3s')->get();
+        $candidats = DB::table('master1s')->get();
         //$totalCandidat = $candidats->count();
 
         $nationalite = $request->input('nationalite');
-        $moyenneBaccalaureat = (float)$request->input('moyenne');
         $mgp = $request->input('mgp'); 
         //$typebaccalaureat = $request->input('typebaccalaureat');
         $age = $request->input('age');
@@ -27,14 +29,10 @@ class Master1Controller extends Controller
         //$region = $request->input('region');
         $filiere = $request->input('filiere');
 
-        $query = DB::table('licence3s');
-
-        if ($moyenneBaccalaureat) {
-            $query->where('moyenne', '>=', $moyenneBaccalaureat);
-        }
+        $query = DB::table('master1s');
 
         if ($mgp) {
-            $query->where('mgp2', '>=', $mgp);
+            $query->where('mgp3', '>=', $mgp);
         }
 
         if ($filiere) {
@@ -51,62 +49,64 @@ class Master1Controller extends Controller
         $totalCandidat = $preSelect->count();
         //dd($totalCandidat);
 
-        // Retrieve % of boys and girls from Cameroon
-        $numberOfCameroonPeople = ceil(($pourcentageCmr / 100) * $totalCandidat);
-        $cameroonPeople = $preSelect->where('filiere', $filiere)
-            ->where('nationalite', 'Cameroun')
-            ->sortByDesc('moyenne')
-            ->take($numberOfCameroonPeople)
-            ->pluck([]);
-            //dd($cameroonPeople);
-            
-        // Retrieve % of boys and girls from other countries
-        $numberOfOtherCountriesPeople = ceil(($pourcentageAutrePay / 100) * $totalCandidat);
-        $otherCountriesPeople = $preSelect->where('filiere', $filiere)
-            ->where('nationalite', '!=', 'Cameroun')
-            ->sortByDesc('moyenne')
-            ->take($numberOfOtherCountriesPeople)
-            ->pluck([]);
-            //dd($otherCountriesPeople);
+        //if( $pourcentageCmr && $pourcentageAutrePay){
+            // Retrieve % of boys and girls from Cameroon
+            $numberOfCameroonPeople = ceil(($pourcentageCmr / 100) * $totalCandidat);
+            $cameroonPeople = $preSelect->where('filiere', $filiere)
+                ->where('nationalite', 'Cameroun')
+                ->sortByDesc('mgp3')
+                ->take($numberOfCameroonPeople)
+                ->pluck([]);
+                //dd($cameroonPeople);
+                
+            // Retrieve % of boys and girls from other countries
+            $numberOfOtherCountriesPeople = ceil(($pourcentageAutrePay / 100) * $totalCandidat);
+            $otherCountriesPeople = $preSelect->where('filiere', $filiere)
+                ->where('nationalite', '!=', 'Cameroun')
+                ->sortByDesc('mgp3')
+                ->take($numberOfOtherCountriesPeople)
+                ->pluck([]);
+                //dd($otherCountriesPeople);
 
-        if ($cameroonPeople !== null && $otherCountriesPeople !== null) {
-            $CountrySelectResult = $cameroonPeople->concat($otherCountriesPeople);
-        } else {
-            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
-            // You can assign a default value or log an error message here
-            $CountrySelectResult = collect(); // Assign an empty collection as the default value
-        }
-        //dd($CountrySelectResult);
+            if ($cameroonPeople !== null && $otherCountriesPeople !== null) {
+                $CountrySelectResult = $cameroonPeople->concat($otherCountriesPeople);
+            } else {
+                // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
+                // You can assign a default value or log an error message here
+                $CountrySelectResult = collect(); // Assign an empty collection as the default value
+            }
+            //dd($CountrySelectResult);
 
-        $totalCandidatCountry = $CountrySelectResult->count();
-        //dd($totalCandidatCountry);
+            $totalCandidatCountry = $CountrySelectResult->count();
+            //dd($totalCandidatCountry);
 
-        // Retrieve % of boys
-        $numberOfBoys = ceil(($pourcentageHommes / 100) * $totalCandidatCountry);
-        //dd($numberOfBoys);
-        $boys = $CountrySelectResult->where('sexe', 'Masculin')
-            ->sortByDesc('moyenne')
-            ->take($numberOfBoys)
-            ->pluck([]);
-            //dd($boys);
+            // Retrieve % of boys
+            $numberOfBoys = ceil(($pourcentageHommes / 100) * $totalCandidatCountry);
+            //dd($numberOfBoys);
+            $boys = $CountrySelectResult->where('sexe', 'Masculin')
+                ->sortByDesc('mgp3')
+                ->take($numberOfBoys)
+                ->pluck([]);
+                //dd($boys);
 
-        // Retrieve % of girls
-        $numberOfGirls = ceil(($pourcentageFemmes / 100) * $totalCandidatCountry);
-        //dd($numberOfGirls);
-        $girls = $CountrySelectResult->where('sexe', 'Féminin')
-            ->sortByDesc('moyenne')
-            ->take($numberOfGirls)
-            ->pluck([]);   
-            //dd($girls);
-            
-        if ($boys !== null && $girls !== null) {
-            $FinalSelct = $boys->concat($girls);
-        } else {
-            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
-            // You can assign a default value or log an error message here
-            $FinalSelct = collect(); // Assign an empty collection as the default value
-        };    
-        //dd($FinalSelct);
+            // Retrieve % of girls
+            $numberOfGirls = ceil(($pourcentageFemmes / 100) * $totalCandidatCountry);
+            //dd($numberOfGirls);
+            $girls = $CountrySelectResult->where('sexe', 'Féminin')
+                ->sortByDesc('mgp3')
+                ->take($numberOfGirls)
+                ->pluck([]);   
+                //dd($girls);
+                
+            if ($boys !== null && $girls !== null) {
+                $FinalSelct = $boys->concat($girls);
+            } else {
+                // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
+                // You can assign a default value or log an error message here
+                $FinalSelct = collect(); // Assign an empty collection as the default value
+            };    
+            //dd($FinalSelct);
+        //}
 
         if ($request->has('selectionner')) {
 
@@ -137,20 +137,20 @@ class Master1Controller extends Controller
         session(['pre_candidats' => $pre_candidats]);
         session()->save(); // Sauvegarde les données de la session
 
-        $select = DB::table('licence3_selects')->get();
+        $select = DB::table('master1_selects')->get();
 
         //  Pourcentages de sexe
         //The max(1, ...) function ensures that the $totalUsers variable is always at least 1 to avoid division by zero errors.
-        $totalUsers = max(1, Licence3Select::count());
-        $maleCount = Licence3Select::where('sexe', 'Masculin')->count();
-        $femaleCount = Licence3Select::where('sexe', 'Feminin')->count();
+        $totalUsers = max(1, Master1Select::count());
+        $maleCount = Master1Select::where('sexe', 'Masculin')->count();
+        $femaleCount = Master1Select::where('sexe', 'Feminin')->count();
 
         // Calcul des pourcentages
         $malePercentage = ($maleCount / $totalUsers) * 100;
         $femalePercentage = ($femaleCount / $totalUsers) * 100;
 
         //These lines extract the ages of the users using the pluck() method on the Licence1Select model, extracting the 'age' column values. The ages are then converted to an array using toArray().
-        $ages = Licence3Select::pluck('age')->toArray();
+        $ages = Master1Select::pluck('age')->toArray();
 
         $averageAge = count($ages) > 0 ? array_sum($ages) / count($ages) : 0;
         //$minAge uses the min() function to find the minimum age from the ages array. If there are no ages, 0 is assigned.
@@ -168,7 +168,7 @@ class Master1Controller extends Controller
             'maxAge' => $maxAge,
         ];
 
-        return view('admin.licence3',$data);
+        return view('admin.master1',$data);
     }
 
     public function blockUnblockLinks(Request $request)
@@ -189,13 +189,13 @@ class Master1Controller extends Controller
     }
 
     public function view_acte_naiss($doc){
-        $data = Licence3::find($doc);
-        return view('Admin/ViewDoc/ViewActeNaissL3', compact('data'));
+        $data = Master1::find($doc);
+        return view('Admin/ViewDoc/ViewActeNaissM1', compact('data'));
     }
 
     public function view_releve($doc){
-        $data = Licence3::find($doc);
-        return view('Admin/ViewDoc/ViewReleveL3', compact('data'));
+        $data = Master1::find($doc);
+        return view('Admin/ViewDoc/ViewReleveM1', compact('data'));
     }
 
     public function validselect(){
@@ -203,14 +203,12 @@ class Master1Controller extends Controller
         if ($candidats) {
             $successCount = 0;
             foreach ($candidats as $candidat) {
-                $existingCandidat = Licence3Select::where('id', $candidat->id)
-                    ->first();
-                if (!$existingCandidat) {
-                    $select = new Licence3Select;
-                    $select->fill((array) $candidat);
-                    $select->save();
-                    $successCount++;
-                }
+                
+                $select = new Master1Select;
+                $select->fill((array) $candidat);
+                $select->save();
+                $successCount++;
+                
             }
 
             if ($successCount > 0) {
@@ -228,7 +226,7 @@ class Master1Controller extends Controller
 
     public function delete_select(){
 
-        DB::table('licence3_selects')->truncate();
+        DB::table('master1_selects')->truncate();
 
         return redirect()->back();
     }
