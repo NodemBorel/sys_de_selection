@@ -1,4 +1,4 @@
-@extends('layouts.extends.admin')
+@extends('layouts.extends.login')
 
 @section('content')
     <br>
@@ -30,7 +30,8 @@
                         @csrf
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Default file Import</label>
-                            <input class="form-control" type="file" accept=".xls,.xlsx" name="file" id="" required>
+                            <input class="form-control" type="file" accept=".xls,.xlsx" name="file" id=""
+                                required>
                         </div>
                         <input type="submit" class="btn btn-outline-danger btn-block" value="Import excel">
                     </form>
@@ -45,14 +46,15 @@
             <div class="col-md">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS DU <b>NIVEAU 3</b>
+                        <h4 class="border-bottom pb-2 mb-4" style="color:rgb(0, 130, 115);">LISTE DES CANDIDATS DU <b>NIVEAU
+                                3</b>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="myDataTable" class="table table-sm table-bordered">
-                                <thead>
-                                    <tr>
+                            <table class="table table-hover" id="myDataTable" class="table table-bordered">
+                                <thead style=" text-align: center;" class="table-bordered">
+                                    <tr style="background-color:rgb(0, 130, 115); text-align: center; color:antiquewhite">
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
@@ -84,8 +86,10 @@
                                             <td>{{ $candidat->mgp2 }}</td>
                                             <td>{{ $candidat->nomEtb2 }}</td>
                                             <td>{{ $candidat->filiere }}</td>
-                                            <td><a href="{{url('/view_acte_naiss_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
-                                            <td><a href="{{url('/view_releve_l3',$candidat->id)}}" class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{ url('/view_acte_naiss_l3', $candidat->id) }}"
+                                                    class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
+                                            <td><a href="{{ url('/view_releve_l3', $candidat->id) }}"
+                                                    class="btn btn-warning btn-sm" style="display: inline;">view</a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -101,7 +105,7 @@
         <div class="row">
             <div class="col-md">
                 <div class="card card-body">
-                    <h2 style="color: #0088cc;">VEUILLEZ DÉFINIR VOS CRITÈRES DE SÉLECTION</h2>
+                    <h2 style="color:rgb(0, 130, 115);">VEUILLEZ DÉFINIR VOS CRITÈRES DE SÉLECTION</h2>
                     <form class="form-inline" action="{{ url('/selectlicence3') }}" method="get">
                         <div class="form-group">
                             <label for="moyenne">Moyenne Baccalauréat >= à</label>
@@ -125,12 +129,14 @@
 
                         <div class="form-group">
                             <label for="pourcentageFemmes">Pourcentage de femmes</label>
-                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="100 = toute" name="pourcentageFemmes">
+                            <input type="number" class="form-control" id="pourcentageFemmes" placeholder="100 = toute"
+                                name="pourcentageFemmes">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="pourcentageHommes">Pourcentage d'hommes</label>
-                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="100 = tous" name="pourcentageHommes">
+                            <input type="number" class="form-control" id="pourcentageHommes" placeholder="100 = tous"
+                                name="pourcentageHommes">
                         </div>
 
                         <div class="form-group">
@@ -140,39 +146,41 @@
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Cameroun</label>
-                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="100 = tous" name="pourcentageCmr">
+                            <input type="number" class="form-control" id="pourcentageCmr" placeholder="100 = tous"
+                                name="pourcentageCmr">
                         </div>
 
                         <div class="form-group">
                             <label for="pourcentageAlgerie">Pourcentage Autre pay</label>
-                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="100 = tous" name="pourcentageAutrePay">
+                            <input type="number" class="form-control" id="pourcentageAutrePay" placeholder="100 = tous"
+                                name="pourcentageAutrePay">
                         </div>
 
                         <!-- <div class="form-group">
-                            <label for="region">Région</label>
-                            <select name="region" id="region" class="form-control">
-                                <option value="">CHOIX RÉGIONS</option>
-                                <option value="Centre">Centre</option>
-                                <option value="Nord">Nord</option>
-                                <option value="Sud">Sud</option>
-                                <option value="Est">Est</option>
-                                <option value="Ouest">Ouest</option>
-                                <option value="Nord-Ouest">Nord-Ouest</option>
-                                <option value="Nord-Est">Nord-Est</option>
-                                <option value="Sud-Ouest">Sud-Ouest</option>
-                                <option value="Sud-Est">Sud-Est</option>
-                            </select>
-                        </div> -->
+                                <label for="region">Région</label>
+                                <select name="region" id="region" class="form-control">
+                                    <option value="">CHOIX RÉGIONS</option>
+                                    <option value="Centre">Centre</option>
+                                    <option value="Nord">Nord</option>
+                                    <option value="Sud">Sud</option>
+                                    <option value="Est">Est</option>
+                                    <option value="Ouest">Ouest</option>
+                                    <option value="Nord-Ouest">Nord-Ouest</option>
+                                    <option value="Nord-Est">Nord-Est</option>
+                                    <option value="Sud-Ouest">Sud-Ouest</option>
+                                    <option value="Sud-Est">Sud-Est</option>
+                                </select>
+                            </div> -->
 
                         <!--- <div class="form-group">
-                            <label for="typebaccalaureat">Baccalauréat</label>
-                            <select name="typebaccalaureat" id="type_baccalaureat" class="form-control">
-                                <option value="">CHOIX TYPE DE BAC</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                                <option value="A4">A4</option>
-                            </select>
-                        </div>  --->
+                                <label for="typebaccalaureat">Baccalauréat</label>
+                                <select name="typebaccalaureat" id="type_baccalaureat" class="form-control">
+                                    <option value="">CHOIX TYPE DE BAC</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="A4">A4</option>
+                                </select>
+                            </div>  --->
 
                         <button name="selectionner" type="submit" class="btn btn-primary">SÉLECTIONNER</button>
                     </form>
@@ -184,14 +192,15 @@
             <div class="col-md">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE DES CANDIDATS SELECTIONNES À
+                        <h4 class="border-bottom pb-2 mb-4" style="color:rgb(0, 130, 115);">LISTE DES CANDIDATS
+                            SELECTIONNES À
                             PARTIR DE CES CRITERES DU <b>NIVEAU 3</b></h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="myDataTable1" class="table table-sm table-bordered">
-                                <thead>
-                                    <tr>
+                            <table class="table table-hover" id="myDataTable" class="table table-bordered">
+                                <thead style=" text-align: center;" class="table-bordered">
+                                    <tr style="background-color:rgb(0, 130, 115); text-align: center; color:antiquewhite">
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
@@ -244,15 +253,16 @@
             <div class="col-md">
                 <div class="card mt-4">
                     <div class="card-header">
-                        <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc;">LISTE VALIDE DES CANDIDATS SELCTIONNES
+                        <h4 class="border-bottom pb-2 mb-4" style="color:rgb(0, 130, 115);">LISTE VALIDE DES CANDIDATS
+                            SELCTIONNES
                             <b>NIVEAU 3</b>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="myDataTable2" class="table table-sm table-bordered">
-                                <thead>
-                                    <tr>
+                            <table class="table table-hover" id="myDataTable" class="table table-bordered">
+                                <thead style=" text-align: center;" class="table-bordered">
+                                    <tr style="background-color:rgb(0, 130, 115); text-align: center; color:antiquewhite">
                                         <th>ID</th>
                                         <th>Nom</th>
                                         <th>Prenom</th>
@@ -330,7 +340,7 @@
         <br>
 
         <div class="row">
-            
+
             <div class="col-sm">
                 <div class="card card-body">
                     <h5>Statistiques age:</h5>

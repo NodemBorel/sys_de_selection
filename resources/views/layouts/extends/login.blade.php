@@ -30,6 +30,26 @@
         div.dataTables_wrapper div.dataTables_length select{
             width: 50% !important;
         }
+
+        #total-orders{
+            background-color: #4cb4c7;
+        }
+        #orders-delivered{
+            background-color: #7abecc;
+        }
+        #orders-pending{
+            background-color: #7CD1C0;
+        }
+
+        .form-inline .form-group {
+        display: inline-block;
+        margin-right: 10px;
+        }
+
+        .form-inline label {
+            display: inline-block;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
