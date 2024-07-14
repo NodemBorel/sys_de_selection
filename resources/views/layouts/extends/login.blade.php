@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
+    <!------------Chart js--------------->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-labels@1.2.0/dist/chartjs-plugin-labels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('styles/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('styles/css/login.css') }}" rel="stylesheet">
@@ -76,7 +81,23 @@
 
     <script>
         $(document).ready(function(){
-            $('#myDataTable').DataTable();
+            $('#myDataTablePub').DataTable();
+        });
+
+        $(document).ready(function(){
+            $('#myDataTable').DataTable({
+                "pageLength": 5
+            });
+        });
+        $(document).ready(function(){
+            $('#myDataTable1').DataTable({
+                "pageLength": 5 // Display 5 records per page
+            });
+        });
+        $(document).ready(function(){
+            $('#myDataTable2').DataTable({
+                "pageLength": 5 // Display 5 records per page
+            });
         });
     </script>
     

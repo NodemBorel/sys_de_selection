@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover" id="myDataTable" class="table table-bordered">
+                        <table class="table table-hover" id="myDataTablePub" class="table table-bordered">
                             <thead style=" text-align: center;" class="table-bordered">
                                 <tr style="background-color:rgb(0, 130, 115); text-align: center; color:antiquewhite">
                                     <th>ID</th>
