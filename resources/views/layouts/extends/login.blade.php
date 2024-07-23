@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Vendor CSS Files -->
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.ico') }}" rel="icon"/>
@@ -61,6 +62,9 @@
     <script src="{{ asset('styles/js/jquery-3.7.0.min.js') }}"></script>
 
     @yield("content")
+
+    <script src="{{ asset('styles/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
     
     <!-- Vendor JS Files -->
