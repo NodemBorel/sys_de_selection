@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string("adresse");
             $table->integer("anneebac");
             $table->string("delivBac");
+            $table->string("Additive");
             $table->timestamps();
         });
     }

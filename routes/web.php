@@ -71,7 +71,7 @@ Route::get('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/licence1', [AdminLicence1Controller::class, 'licence1']);
 //Route::get('download_acte_naiss/{acte_naissance}', [AdminLicence1Controller::class, 'downloadActeNaiss']);
-Route::get('/view_acte_naiss_l1/{doc}', [AdminLicence1Controller::class, 'view_acte_naiss']);
+Route::get('/view_acte_naiss_l1/{doc}', [AdminLicence1Controller::class, 'view_acte_naiss']); 
 Route::get('/view_releve_l1/{doc}', [AdminLicence1Controller::class, 'view_releve']);
 Route::post('/block-links_l1', [AdminLicence1Controller::class, 'blockUnblockLinks']);
 Route::post('/licence1_import', [Licence1ImportExport::class, 'import']);
@@ -79,6 +79,7 @@ Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);
 Route::get('/selectlicence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
 Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
+Route::post('/delete_list', [AdminLicence1Controller::class, 'delete_list']);
 Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);
 Route::get('/email-select1', [EmailController::class, 'emailNiveau1']);
 

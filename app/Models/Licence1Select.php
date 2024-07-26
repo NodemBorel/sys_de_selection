@@ -31,5 +31,6 @@ class Licence1Select extends Model
         'adresse',
         'anneebac',
         'delivBac',
+        'Additive',
     ];
 }

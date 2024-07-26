@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
     <style>
         th {
-            background-color: #557CBA;
+            background-color: #0056b3;
+            color: white;
         }
 
         /* Alternance de couleur sur les lignes */
         tr:nth-child(even) {
-            background-color: #CED4E5;
+            background-color: #f2f2f2;
         }
 
         tr:nth-child(odd) {
-            background-color: #E8EBF5;
+            background-color: #e6e6e6;
         }
 
         /* Ajouter la classe personnalisée pour centrer le tableau */
@@ -31,69 +32,66 @@
         table {
             font-size: 11px;
         }
-
-
     </style>
 </head>
 <body>
+    <div class="position-relative my-1">
+        <h3 style="color: #0056b3; margin-bottom: 20px; text-align: center; font-style: italic;">BIENVENUE SUR LA PAGE NIVEAU 1</h3>
+    </div>
 
-
-        <div class="position-relative my-1">
-        <h3 style="color: #0088cc; margin-bottom: 20px; text-align: center; font-style: italic;">BIENVENUE SUR LA PAGE NIVEAU 1</h3>
-        </div>
-
-        <div class="my-3 p-3 bg-body rounded shadow-sn">
-            <h4 class="border-bottom pb-2 mb-4" style="color: #0088cc; font-style: italic;">LISTE DES CANDIDATS SELECTIONNES DU NIVEAU 1</h4>
-            <div class="center-table">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prenom</th>
-                            <th scope="col">Sexe</th>
-                            <th scope="col">Nationalité</th>
-                            <th scope="col">email</th>
-                            <th scope="col">Type Baccalaureat</th>
-                            <th scope="col">Moyenne</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">Region</th>
-                            <th scope="col">Nom de l'Etablissement</th>
-                            <th scope="col">Filiere</th>
-                            <th scope="col">Numero Acte</th>
-                            <th scope="col">Date Naissance</th>
-                            <th scope="col">Lieu Naissance</th>
-                            <th scope="col">Langue</th>
-                            <th scope="col">Année Baccalaureat</th>
-                            <th scope="col">Delivrance Diplome</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($candidats as $candidat)
-                        <tr>
-                            <td>{{$candidat->id}}</td>
-                            <td>{{$candidat->nom}}</td>
-                            <td>{{$candidat->prenom}}</td>
-                            <td>{{$candidat->sexe}}</td>
-                            <td>{{$candidat->nationalite}}</td>
-                            <td>{{$candidat->email}}</td>
-                            <td>{{$candidat->typebaccalaureat}}</td>
-                            <td>{{$candidat->moyenne}}</td>
-                            <td>{{$candidat->age}}</td>
-                            <td>{{$candidat->region}}</td>
-                            <td>{{$candidat->nomEtb}}</td>
-                            <td>{{$candidat->filiere}}</td>
-                            <td>{{$candidat->numActe}}</td>
-                            <td>{{$candidat->dateNaiss}}</td>
-                            <td>{{$candidat->lieuNaiss}}</td>
-                            <td>{{$candidat->langue}}</td>
-                            <td>{{$candidat->anneebac}}</td>
-                            <td>{{$candidat->delivBac}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sn">
+        <h4 class="border-bottom pb-2 mb-4" style="color: #0056b3; font-style: italic;">LISTE DES CANDIDATS SELECTIONNES DU NIVEAU 1</h4>
+        <div class="center-table">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col">Sexe</th>
+                        <th scope="col">Nationalité</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Type Baccalaureat</th>
+                        <th scope="col">Moyenne</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Nom de l'Etablissement</th>
+                        <th scope="col">Filiere</th>
+                        <th scope="col">Numero Acte</th>
+                        <th scope="col">Date Naissance</th>
+                        <th scope="col">Lieu Naissance</th>
+                        <th scope="col">Langue</th>
+                        <th scope="col">Année Baccalaureat</th>
+                        <th scope="col">Delivrance Diplome</th>
+                        <th scope="col">Additive</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($candidats as $candidat)
+                    <tr>
+                        <td>{{$candidat->id}}</td>
+                        <td>{{$candidat->nom}}</td>
+                        <td>{{$candidat->prenom}}</td>
+                        <td>{{$candidat->sexe}}</td>
+                        <td>{{$candidat->nationalite}}</td>
+                        <td>{{$candidat->email}}</td>
+                        <td>{{$candidat->typebaccalaureat}}</td>
+                        <td>{{$candidat->moyenne}}</td>
+                        <td>{{$candidat->age}}</td>
+                        <td>{{$candidat->region}}</td>
+                        <td>{{$candidat->nomEtb}}</td>
+                        <td>{{$candidat->filiere}}</td>
+                        <td>{{$candidat->numActe}}</td>
+                        <td>{{$candidat->dateNaiss}}</td>
+                        <td>{{$candidat->lieuNaiss}}</td>
+                        <td>{{$candidat->langue}}</td>
+                        <td>{{$candidat->anneebac}}</td>
+                        <td>{{$candidat->delivBac}}</td>
+                        <td>{{$candidat->Additive}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
