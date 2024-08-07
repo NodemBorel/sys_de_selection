@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string("adresse");
             $table->string("delivBac");
             $table->string("provDiplome");
+            $table->string("Additive");
             $table->timestamps();
         });
     }

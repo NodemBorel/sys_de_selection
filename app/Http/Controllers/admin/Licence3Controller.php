@@ -12,138 +12,86 @@ use Illuminate\Support\Facades\File;
 class Licence3Controller extends Controller
 {
     private $candidats;
-    public function licence3(Request $request){
+    public function licence3(Request $request)
+    {
+        $candidats_tous = DB::table('licence3s')->get();
 
-        $candidats = DB::table('licence3s')->get();
-        //$totalCandidat = $candidats->count();
-
-        $nationalite = $request->input('nationalite');
-        $moyenneBaccalaureat = (float)$request->input('moyenne');
-        $mgp = $request->input('mgp'); 
-        //$typebaccalaureat = $request->input('typebaccalaureat');
-        $age = $request->input('age');
-        $pourcentageFemmes = $request->input('pourcentageFemmes');
-        $pourcentageHommes = $request->input('pourcentageHommes');
-        $pourcentageCmr = $request->input('pourcentageCmr');
-        $pourcentageAutrePay = $request->input('pourcentageAutrePay');
-        //$sexe = $request->input('sexe');
-        //$region = $request->input('region');
         $filiere = $request->input('filiere');
+        $typebaccalaureat = $request->input('typebaccalaureat');
+        $nationalite = $request->input('nationalite');
+        $age = $request->input('age');
+        $sexes = $request->input('sexe', []);
+        $region = $request->input('region');
+        $provDiplome = $request->input('provDiplome');
+        $mgp2 = (float)$request->input('mgp2');
 
         $query = DB::table('licence3s');
-
-        if ($moyenneBaccalaureat) {
-            $query->where('moyenne', '>=', $moyenneBaccalaureat);
-        }
-
-        if ($mgp) {
-            $query->where('mgp2', '>=', $mgp);
-        }
 
         if ($filiere) {
             $query->where('filiere', $filiere);
         }
 
-        if($age){
-            $query->where('age', '>=', $age);
+        if ($mgp2) {
+            $query->where('mgp2', '>=', $mgp2);
         }
 
-        $preSelect = $query->get();
-        //dd($preSelect);
-
-        $totalCandidat = $preSelect->count();
-        //dd($totalCandidat);
-
-        // Retrieve % of boys and girls from Cameroon
-        $numberOfCameroonPeople = ceil(($pourcentageCmr / 100) * $totalCandidat);
-        $cameroonPeople = $preSelect->where('filiere', $filiere)
-            ->where('nationalite', 'Cameroun')
-            ->sortByDesc('moyenne')
-            ->take($numberOfCameroonPeople)
-            ->pluck([]);
-            //dd($cameroonPeople);
-            
-        // Retrieve % of boys and girls from other countries
-        $numberOfOtherCountriesPeople = ceil(($pourcentageAutrePay / 100) * $totalCandidat);
-        $otherCountriesPeople = $preSelect->where('filiere', $filiere)
-            ->where('nationalite', '!=', 'Cameroun')
-            ->sortByDesc('moyenne')
-            ->take($numberOfOtherCountriesPeople)
-            ->pluck([]);
-            //dd($otherCountriesPeople);
-
-        if ($cameroonPeople !== null && $otherCountriesPeople !== null) {
-            $CountrySelectResult = $cameroonPeople->concat($otherCountriesPeople);
-        } else {
-            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
-            // You can assign a default value or log an error message here
-            $CountrySelectResult = collect(); // Assign an empty collection as the default value
+        if ($typebaccalaureat) {
+            $query->where('typebaccalaureat', $typebaccalaureat);
         }
-        //dd($CountrySelectResult);
 
-        $totalCandidatCountry = $CountrySelectResult->count();
-        //dd($totalCandidatCountry);
+        if ($nationalite) {
+            $query->where('nationalite', $nationalite);
+        }
 
-        // Retrieve % of boys
-        $numberOfBoys = ceil(($pourcentageHommes / 100) * $totalCandidatCountry);
-        //dd($numberOfBoys);
-        $boys = $CountrySelectResult->where('sexe', 'Masculin')
-            ->sortByDesc('moyenne')
-            ->take($numberOfBoys)
-            ->pluck([]);
-            //dd($boys);
+        if ($age) {
+            $query->where('age' , '<=', $age);
+        }
 
-        // Retrieve % of girls
-        $numberOfGirls = ceil(($pourcentageFemmes / 100) * $totalCandidatCountry);
-        //dd($numberOfGirls);
-        $girls = $CountrySelectResult->where('sexe', 'Féminin')
-            ->sortByDesc('moyenne')
-            ->take($numberOfGirls)
-            ->pluck([]);   
-            //dd($girls);
-            
-        if ($boys !== null && $girls !== null) {
-            $FinalSelct = $boys->concat($girls);
-        } else {
-            // Handle the case when either $cameroonPeople or $otherCountriesPeople is null
-            // You can assign a default value or log an error message here
-            $FinalSelct = collect(); // Assign an empty collection as the default value
-        };    
-        //dd($FinalSelct);
+        if ($sexes) {
+            $query->whereIn('sexe', $sexes);
+        }
+
+        if ($region) {
+            $query->where('region', $region);
+        }
+
+        if ($provDiplome) {
+            $query->where('provDiplome', $provDiplome);
+        }
+
+        $candidats = $query->get();
+
+        $candidats_non = collect([]);
 
         if ($request->has('selectionner')) {
+            $this->candidats = $query->get();
+            $candidats_non = DB::table('licence3s')
+                ->where('mgp2', '<', $mgp2)
+                ->orWhere('filiere', '!=', $filiere)
+                ->get();
 
-            $this->candidats = $FinalSelct;
-
-                /*$candidats_non = DB::table('candidats')
-                    ->where('moyenne', '<', $moyenneBaccalaureat)
-                    ->where('sexe','!=', $sexe)
-                    ->orWhere('filiere', '!=', $filiere)
-                    ->get();
-
-                foreach ($candidats_non as $candidat) {
-                    if ($candidat->moyenne < $moyenneBaccalaureat && $candidat->filiere != $filiere) {
-                        $candidat->motif = 'Moyenne insuffisante et Filiere non sélectionnée';
-                    } else if ($candidat->moyenne < $moyenneBaccalaureat) {
-                        $candidat->motif = 'Moyenne insuffisante';
-                    } else if ($candidat->filiere != $filiere) {
-                        $candidat->motif = 'Filiere non sélectionnée';
-                    }
-                }*/
+            foreach ($candidats_non as $candidat) {
+                if ($candidat->mgp2 < $mgp2 && $candidat->filiere != $filiere) {
+                    $candidat->motif = 'MGP insuffisant et Filiere non sélectionnée';
+                } else if ($candidat->mgp2 < $mgp2) {
+                    $candidat->motif = 'MGP insuffisant';
+                } else if ($candidat->filiere != $filiere) {
+                    $candidat->motif = 'Filiere non sélectionnée';
+                }
+            }
         } else {
             $this->candidats = collect([]); // Tableau vide si le bouton "Sélectionner" n'est pas cliqué
-            //$candidats_non = collect([]); // Tableau vide également
+            $candidats_non = collect([]); // Tableau vide également
         }
 
-        $pre_candidats = $this->candidats;
+        $candidats = $this->candidats;
 
-        session(['pre_candidats' => $pre_candidats]);
-        session()->save(); // Sauvegarde les données de la session
+        session(['candidats' => $candidats]);
+        session()->save();
 
-        $select = DB::table('licence3_selects')->get();
+        $select3 = DB::table('licence3_selects')->get();
 
         //  Pourcentages de sexe
-        //The max(1, ...) function ensures that the $totalUsers variable is always at least 1 to avoid division by zero errors.
         $totalUsers = max(1, Licence3Select::count());
         $maleCount = Licence3Select::where('sexe', 'Masculin')->count();
         $femaleCount = Licence3Select::where('sexe', 'Feminin')->count();
@@ -152,26 +100,35 @@ class Licence3Controller extends Controller
         $malePercentage = ($maleCount / $totalUsers) * 100;
         $femalePercentage = ($femaleCount / $totalUsers) * 100;
 
-        //These lines extract the ages of the users using the pluck() method on the Licence1Select model, extracting the 'age' column values. The ages are then converted to an array using toArray().
         $ages = Licence3Select::pluck('age')->toArray();
 
         $averageAge = count($ages) > 0 ? array_sum($ages) / count($ages) : 0;
-        //$minAge uses the min() function to find the minimum age from the ages array. If there are no ages, 0 is assigned.
         $minAge = count($ages) > 0 ? min($ages) : 0;
         $maxAge = count($ages) > 0 ? max($ages) : 0;
-        
-        $data=[
-            'pre_candidats' => $pre_candidats,
+
+        //mgp
+        $moyenne = Licence3Select::pluck('mgp2')->toArray();
+
+        $averageMoy = count($moyenne) > 0 ? array_sum($moyenne) / count($moyenne) : 0;
+        $minMoyenne = count($moyenne) > 0 ? min($moyenne) : 0;
+        $maxMoyenne = count($moyenne) > 0 ? max($moyenne) : 0;
+
+        $data = [
             'candidats' => $candidats,
-            'select' => $select,
+            'candidats_tous' => $candidats_tous,
+            'candidats_non' => $candidats_non,
+            'select' => $select3,
             'malePercentage' => $malePercentage,
             'femalePercentage' => $femalePercentage,
             'averageAge' => $averageAge,
             'minAge' => $minAge,
             'maxAge' => $maxAge,
+            'averageMoy' => $averageMoy,
+            'minMoyenne' => $minMoyenne,
+            'maxMoyenne' => $maxMoyenne,
         ];
-
-        return view('admin.licence3',$data);
+    
+        return view("admin.licence3", $data); 
     }
 
     public function blockUnblockLinks(Request $request)
@@ -201,28 +158,56 @@ class Licence3Controller extends Controller
         return view('Admin/ViewDoc/ViewReleveL3', compact('data'));
     }
 
-    public function validselect(){
-        $candidats = session('pre_candidats');
+    public function validselect()
+    {
+        $candidats = session('candidats');
         if ($candidats) {
             $successCount = 0;
-            foreach ($candidats as $candidat) {
-                
-                $select = new Licence3Select;
-                $select->fill((array) $candidat);
-                $select->save();
-                $successCount++;
-                
+            $alreadyExistsCount = 0;  // To track candidates already in the table
+
+            // Get the current maximum value of 'Additive' from 'Licence1Select'
+            $currentAdditive = Licence3Select::max('Additive');
+            $currentAdditive = is_null($currentAdditive) ? 0 : $currentAdditive + 1;  // Initialize to 0 if null, otherwise increment by 1
+
+            DB::beginTransaction();  // Start a transaction for data integrity
+            try {
+                foreach ($candidats as $candidat) {
+                    // Check if a record with the same 'numActe' already exists in 'Licence1Select'
+                    $exists = Licence3Select::where('numActe', $candidat->numActe)->exists();
+                    if (!$exists) {
+                        // If not exists, delete from 'licence1s' and insert into 'Licence1Select'
+                        if (isset($candidat->id)) {
+                            DB::table('licence3s')->where('id', $candidat->id)->delete();
+                        }
+
+                        $select = new Licence3Select;
+                        $select->fill((array) $candidat);
+
+                        // Assign the current Additive value to the new record
+                        $select->Additive = $currentAdditive;
+
+                        if ($select->save()) {
+                            $successCount++;
+                        }
+                    } else {
+                        // Increment the counter if candidate already exists
+                        $alreadyExistsCount++;
+                    }
+                }
+                DB::commit();  // Commit the transaction
+            } catch (\Exception $e) {
+                DB::rollBack();  // Roll back the transaction in case of an error
+                return redirect()->back()->with('message', 'Une erreur s\'est produite lors de la modification des données: ' . $e->getMessage());
             }
 
-            if ($successCount > 0) {
-                // Au moins un enregistrement réussi
-                return redirect()->back()->with('message', $successCount . ' enregistrement(s) ont été ajoutés avec succès.');
-            } else {
-                // Aucun enregistrement ajouté (tous existent déjà)
-                return redirect()->back()->with('message', 'Aucun nouvel enregistrement ajouté.');
+            // Prepare success message
+            $message = $successCount . ' enregistrement(s) ont été ajoutés avec succès.';
+            if ($alreadyExistsCount > 0) {
+                $message .= ' ' . $alreadyExistsCount . ' enregistrement(s) existent déjà et n\'ont pas été ajoutés.';
             }
+
+            return redirect()->back()->with('message', $message);
         } else {
-            // Échec de l'enregistrement
             return redirect()->back()->with('message', 'Une erreur s\'est produite lors de l\'enregistrement des données.');
         }
     }
@@ -230,6 +215,14 @@ class Licence3Controller extends Controller
     public function delete_select(){
 
         DB::table('licence3_selects')->truncate();
+
+        return redirect()->back();
+    }
+
+    public function delete_list()
+    {
+
+        DB::table('licence3s')->truncate();
 
         return redirect()->back();
     }

@@ -33,5 +33,6 @@ class Licence3Select extends Model
         'langue',
         'adresse',
         'provDiplome',
+        'Additive',
     ];
 }

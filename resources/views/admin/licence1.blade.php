@@ -105,7 +105,7 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <form class="my-form" action="{{ url('/delete_list') }}" method="POST">
+            <form class="my-form" action="{{ url('/delete_list1') }}" method="POST">
                 @csrf
                 <div class="my-3 mx-2">
                     <button class="btn btn-primary" type="submit">VIDER LA LISTE</button>

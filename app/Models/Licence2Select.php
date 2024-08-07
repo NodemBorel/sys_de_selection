@@ -32,5 +32,6 @@ class Licence2Select extends Model
         'adresse',
         'delivBac',
         'provDiplome',
+        'Additive',
     ];
 }

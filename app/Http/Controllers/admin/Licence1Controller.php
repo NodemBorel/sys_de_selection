@@ -170,58 +170,58 @@ class Licence1Controller extends Controller
     }
 
     public function validselect()
-{
-    $candidats = session('candidats');
-    if ($candidats) {
-        $successCount = 0;
-        $alreadyExistsCount = 0;  // To track candidates already in the table
+    {
+        $candidats = session('candidats');
+        if ($candidats) {
+            $successCount = 0;
+            $alreadyExistsCount = 0;  // To track candidates already in the table
 
-        // Get the current maximum value of 'Additive' from 'Licence1Select'
-        $currentAdditive = Licence1Select::max('Additive');
-        $currentAdditive = is_null($currentAdditive) ? 0 : $currentAdditive + 1;  // Initialize to 0 if null, otherwise increment by 1
+            // Get the current maximum value of 'Additive' from 'Licence1Select'
+            $currentAdditive = Licence1Select::max('Additive');
+            $currentAdditive = is_null($currentAdditive) ? 0 : $currentAdditive + 1;  // Initialize to 0 if null, otherwise increment by 1
 
-        DB::beginTransaction();  // Start a transaction for data integrity
-        try {
-            foreach ($candidats as $candidat) {
-                // Check if a record with the same 'numActe' already exists in 'Licence1Select'
-                $exists = Licence1Select::where('numActe', $candidat->numActe)->exists();
-                if (!$exists) {
-                    // If not exists, delete from 'licence1s' and insert into 'Licence1Select'
-                    if (isset($candidat->id)) {
-                        DB::table('licence1s')->where('id', $candidat->id)->delete();
+            DB::beginTransaction();  // Start a transaction for data integrity
+            try {
+                foreach ($candidats as $candidat) {
+                    // Check if a record with the same 'numActe' already exists in 'Licence1Select'
+                    $exists = Licence1Select::where('numActe', $candidat->numActe)->exists();
+                    if (!$exists) {
+                        // If not exists, delete from 'licence1s' and insert into 'Licence1Select'
+                        if (isset($candidat->id)) {
+                            DB::table('licence1s')->where('id', $candidat->id)->delete();
+                        }
+
+                        $select = new Licence1Select;
+                        $select->fill((array) $candidat);
+
+                        // Assign the current Additive value to the new record
+                        $select->Additive = $currentAdditive;
+
+                        if ($select->save()) {
+                            $successCount++;
+                        }
+                    } else {
+                        // Increment the counter if candidate already exists
+                        $alreadyExistsCount++;
                     }
-
-                    $select = new Licence1Select;
-                    $select->fill((array) $candidat);
-
-                    // Assign the current Additive value to the new record
-                    $select->Additive = $currentAdditive;
-
-                    if ($select->save()) {
-                        $successCount++;
-                    }
-                } else {
-                    // Increment the counter if candidate already exists
-                    $alreadyExistsCount++;
                 }
+                DB::commit();  // Commit the transaction
+            } catch (\Exception $e) {
+                DB::rollBack();  // Roll back the transaction in case of an error
+                return redirect()->back()->with('message', 'Une erreur s\'est produite lors de la modification des données: ' . $e->getMessage());
             }
-            DB::commit();  // Commit the transaction
-        } catch (\Exception $e) {
-            DB::rollBack();  // Roll back the transaction in case of an error
-            return redirect()->back()->with('message', 'Une erreur s\'est produite lors de la modification des données: ' . $e->getMessage());
-        }
 
-        // Prepare success message
-        $message = $successCount . ' enregistrement(s) ont été ajoutés avec succès.';
-        if ($alreadyExistsCount > 0) {
-            $message .= ' ' . $alreadyExistsCount . ' enregistrement(s) existent déjà et n\'ont pas été ajoutés.';
-        }
+            // Prepare success message
+            $message = $successCount . ' enregistrement(s) ont été ajoutés avec succès.';
+            if ($alreadyExistsCount > 0) {
+                $message .= ' ' . $alreadyExistsCount . ' enregistrement(s) existent déjà et n\'ont pas été ajoutés.';
+            }
 
-        return redirect()->back()->with('message', $message);
-    } else {
-        return redirect()->back()->with('message', 'Une erreur s\'est produite lors de l\'enregistrement des données.');
+            return redirect()->back()->with('message', $message);
+        } else {
+            return redirect()->back()->with('message', 'Une erreur s\'est produite lors de l\'enregistrement des données.');
+        }
     }
-}
 
 
     public function delete_select()

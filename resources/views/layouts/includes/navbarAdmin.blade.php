@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header class="navbar navbar-expand-lg navbar-dark" style="background-color: #008374">
     <div class="container">
       <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ asset('images/UY1.jpg') }}" alt="logo" class="img-fluid">

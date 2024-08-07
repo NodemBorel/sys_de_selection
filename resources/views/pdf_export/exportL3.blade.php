@@ -7,16 +7,17 @@
     <link rel="stylesheet" href="{{ asset('styles/css/bootstrap.min.css') }}">
     <style>
         th {
-            background-color: #557CBA;
+            background-color: #0056b3;
+            color: white;
         }
 
         /* Alternance de couleur sur les lignes */
         tr:nth-child(even) {
-            background-color: #CED4E5;
+            background-color: #f2f2f2;
         }
 
         tr:nth-child(odd) {
-            background-color: #E8EBF5;
+            background-color: #e6e6e6;
         }
 
         /* Ajouter la classe personnalisée pour centrer le tableau */

@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Admin::factory(1)->create();
-        Licence1::factory(10)->create();
-        Licence2::factory(10)->create();
-        Licence3::factory(10)->create();
+        Licence1::factory(100)->create();
+        Licence2::factory(100)->create();
+        Licence3::factory(100)->create();
         Master1::factory(10)->create();
         Master2::factory(10)->create();
         Doctorat::factory(10)->create();

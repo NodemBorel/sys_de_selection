@@ -79,7 +79,7 @@ Route::get('/licence1_export-excel', [Licence1ImportExport::class, 'export']);
 Route::get('/selectlicence1', [AdminLicence1Controller::class, 'licence1']);
 Route::post('/validselect1', [AdminLicence1Controller::class, 'validselect']);
 Route::post('/delete-select1', [AdminLicence1Controller::class, 'delete_select']);
-Route::post('/delete_list', [AdminLicence1Controller::class, 'delete_list']);
+Route::post('/delete_list1', [AdminLicence1Controller::class, 'delete_list']);
 Route::get('/licence1_exportpdf', [Licence1ImportExport::class, 'exportpdf']);
 Route::get('/email-select1', [EmailController::class, 'emailNiveau1']);
 
@@ -92,6 +92,7 @@ Route::get('/licence2_export-excel', [Licence2ImportExport::class, 'export']);
 Route::get('/selectlicence2', [AdminLicence2Controller::class, 'licence2']);
 Route::post('/validselect2', [AdminLicence2Controller::class, 'validselect']);
 Route::post('/delete-select2', [AdminLicence2Controller::class, 'delete_select']);
+Route::post('/delete_list2', [AdminLicence1Controller::class, 'delete_list']);
 Route::get('/licence2_exportpdf', [Licence2ImportExport::class, 'exportpdf']);
 Route::get('/email-select2', [EmailController::class, 'emailNiveau2']);
 
@@ -104,6 +105,7 @@ Route::get('/licence3_export-excel', [Licence3ImportExport::class, 'export']);
 Route::get('/selectlicence3', [AdminLicence3Controller::class, 'licence3']);
 Route::post('/validselect3', [AdminLicence3Controller::class, 'validselect']);
 Route::post('/delete-select3', [AdminLicence3Controller::class, 'delete_select']);
+Route::get('/delete_list3', [AdminLicence1Controller::class, 'delete_list']);
 Route::get('/licence3_exportpdf', [Licence3ImportExport::class, 'exportpdf']);
 Route::get('/email-select3', [EmailController::class, 'emailNiveau3']);
 

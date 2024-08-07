@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string("langue");
             $table->string("adresse");
             $table->string("provDiplome");
+            $table->string("Additive");
             $table->timestamps();
         });
     }
